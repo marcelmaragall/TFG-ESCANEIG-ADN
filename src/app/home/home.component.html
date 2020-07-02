@@ -1,7 +1,72 @@
-<div class="container">
+<!--<div class="container">
   <h1 class="title">
     {{ 'PAGES.HOME.TITLE' | translate }}
   </h1>
 
   <a routerLink="/detail">{{ 'PAGES.HOME.GO_TO_DETAIL' | translate }}</a>
+
+  <h1 class="title">
+    MARRON! MAYONOSO!
+  </h1>
+  <button class="btn btn-danger"> La probo do botone</button>
+</div>-->
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Expense Manager</h2>
+  </div>
+  <div class="row">
+    <div class="col-centered">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Add Expense
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New expense</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Expense title">
+                </div>
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" placeholder="Expense amount">
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </h4>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Farm fresh vegetables</h6>
+          </div> <span class="text-muted">$12</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Organic Eggs</h6>
+          </div> <span class="text-muted">$8</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Beer</h6>
+          </div> <span class="text-muted">$5</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
