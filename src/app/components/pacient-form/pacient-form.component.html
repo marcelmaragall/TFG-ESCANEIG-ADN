@@ -1,1 +1,47 @@
-<p>pacient-form works!</p>
+<div class="col-md-5 offset-md-3">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="nouPacient">
+        <div class="form-group">
+          <label>
+            Nom:
+          </label>
+          <!--ngModel permet enllaçar el valor del formulari amb la variable del model. La directiva formControlName permet controlar quins camps son obligatoris i quines condicions han de complir-->
+          <input type="text" name="nom" [(ngModel)]="pacient.nom" placeholder="Nom" class="form-control" formControlName="nom" autofocus>
+        </div>
+        <div class="form-group">
+          <label>Cognoms</label>
+          <input type="text" name="cognoms" [(ngModel)]="pacient.cognoms" placeholder="Cognoms" class="form-control" formControlName="cognoms">
+        </div>
+        <div class="form-group">
+          <label>DNI</label>
+          <input type="text" name="dni" [(ngModel)]="pacient.dni" placeholder="DNI" class="form-control" formControlName="dni">
+        </div>
+        <div class="form-group">
+          <label>Correu electronic</label>
+          <input type="text" name="ce" [(ngModel)]="pacient.ce" placeholder="Correu electrònic" class="form-control" formControlName="ce">
+        </div>
+        <div class="form-group">
+          <label>Telefon</label>
+          <input type="text" name="telefon" [(ngModel)]="pacient.telefon" placeholder="Telèfon" class="form-control" formControlName="telefon">
+        </div>
+        <div class="form-group">
+          <label>Pais</label>
+          <input type="text" name="pais" [(ngModel)]="pacient.pais" placeholder="País" class="form-control" formControlName="pais">
+        </div>
+        <div class="form-group">
+          <label>Ciutat</label>
+          <input type="text" name="ciutat" [(ngModel)]="pacient.ciutat" placeholder="Ciutat" class="form-control" formControlName="ciutat">
+        </div>
+        <div class="form-group">
+          <label>Adreça</label>
+          <input type="text" name="address" [(ngModel)]="pacient.address" placeholder="Adreça" class="form-control" formControlName="address">
+        </div>
+        <!--El disabled permet desactivar el submit quan no s'han satisfet totes les condicions dels Validators-->
+        <button (click)="edit ? updatePacient() :  saveNewPacient()" [disabled]="!nouPacient.valid" class="btn btn-success btn-block">
+          SAVE
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

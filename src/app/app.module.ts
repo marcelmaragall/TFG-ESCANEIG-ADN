@@ -3,7 +3,7 @@ import '../polyfills';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -20,6 +20,15 @@ import { DetailModule } from './detail/detail.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component'
 
+// Components
+
+import { PacientListComponent } from './components/pacient-list/pacient-list.component'
+import { PacientFormComponent } from './components/pacient-form/pacient-form.component'
+
+
+// Services
+import { PacientService } from './services/pacient.service'
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,11 +37,14 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent
+    NavigationComponent,
+    PacientListComponent,
+    PacientFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
     SharedModule,
@@ -47,7 +59,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [],
+  providers: [PacientService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
