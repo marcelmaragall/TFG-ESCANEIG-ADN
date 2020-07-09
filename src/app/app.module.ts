@@ -34,6 +34,7 @@ import { AlertComponent } from './components/alert/alert.component'
 // Services
 import { PacientService } from './services/pacient.service';
 import {HomeComponent} from "./home/home.component";
+import { PatologiaListComponent } from './components/patologia-list/patologia-list.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -47,7 +48,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     PacientListComponent,
     PacientFormComponent,
     AlertComponent,
-    HomeComponent
+    HomeComponent,
+    PatologiaListComponent
   ],
   imports: [
     BrowserModule,

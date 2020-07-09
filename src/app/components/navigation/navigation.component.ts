@@ -20,12 +20,11 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.user.id = 2;
+
   }
 
   logout() {
-    //this.accountService.logout();
-    console.log(this.user)
+    this.accountService.logout();
   }
 
 }
