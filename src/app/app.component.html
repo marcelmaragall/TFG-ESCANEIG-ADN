@@ -1,8 +1,17 @@
-<app-navigation></app-navigation>
-<div class="container-fluid">
+<app-navigation *ngIf="user"></app-navigation>
+<!--<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>-->
+
+<div class="container-fluid" [ngClass]="{ 'bg-light': user }">
   <div class="row">
     <div class="col-1"></div>
     <div class="col-11">
+      <alert></alert>
       <router-outlet></router-outlet>
     </div>
   </div>

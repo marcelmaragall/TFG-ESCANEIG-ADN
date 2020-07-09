@@ -37,10 +37,10 @@
           Usuari
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/usuari">Perfil</a>
+          <a class="dropdown-item" routerLink="/users/edit/{{user.id}}">Perfil</a>
           <a class="dropdown-item">Preferencies</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item">Log out</a>
+          <a class="dropdown-item" (click)="logout()">Log out</a>
         </div>
       </li>
     </ul>

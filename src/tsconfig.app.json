@@ -2,13 +2,12 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "module": "es2015",
+    "module": "esnext",
     "baseUrl": "",
     "types": []
   },
   "include": [
-    "**/*.ts",
-
+    "**/*.ts"
   ],
   "exclude": [
     "**/*.spec.ts"
