@@ -30,13 +30,19 @@ import { PacientListComponent } from './components/pacient-list/pacient-list.com
 import { PacientFormComponent } from './components/pacient-form/pacient-form.component'
 import { PacientDetallComponent } from './components/pacient-detall/pacient-detall.component'
 import { AlertComponent } from './components/alert/alert.component'
-import {HomeComponent} from "./home/home.component";
+import { HomeComponent } from "./home/home.component";
 import { PatologiaListComponent } from './components/patologia-list/patologia-list.component';
 import { DiagnosticPacientComponent } from './components/diagnostic-pacient/diagnostic-pacient.component';
+import { EscaneigComponent } from './components/escaneig/escaneig.component';
 
 
 // Services
 import { PacientService } from './services/pacient.service';
+import { SequenciacioComponent } from './components/sequenciacio/sequenciacio.component';
+import { DiagnosticPacientService } from "./services/diagnostic-pacient.service";
+import {SequenciacioService} from "./services/sequenciacio.service";
+import {EscaneigService} from "./services/escaneig.service";
+import { SequenciacioDetallComponent } from './components/sequenciacio-detall/sequenciacio-detall.component';
 
 
 // AoT requires an exported function for factories
@@ -55,6 +61,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HomeComponent,
     PatologiaListComponent,
     DiagnosticPacientComponent,
+    SequenciacioComponent,
+    EscaneigComponent,
+    SequenciacioDetallComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +83,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [PacientService,
+  providers: [PacientService, DiagnosticPacientService,SequenciacioService, EscaneigService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

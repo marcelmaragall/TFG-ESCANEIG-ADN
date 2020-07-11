@@ -1,9 +1,7 @@
 <div class="row">
+
   <div class="col-md-4">
-    Nom
-    <p>{{pacient.nom}}</p>
-    Cognoms
-    <p>{{pacient.cognoms}}</p>
+    <h3>{{pacient.nom}} {{pacient.cognoms}}</h3>
     DNI
     <p>{{pacient.dni}}</p>
     Telefon
@@ -19,38 +17,21 @@
   </div>
 
   <div class="col-md-8">
-    <p>MALALTIES DIAGNOSTICADES</p>
+    <h3>MALALTIES DIAGNOSTICADES</h3>
     <app-diagnostic-pacient [pacient_id]="pacient.id"></app-diagnostic-pacient>
-    <p>UU</p>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <p>SEQÜENCIACIONS</p>
+  <div class="col">
+    <h3>SEQÜENCIACIONS</h3>
+    <app-sequenciacio [pacient_id]="pacient.id"></app-sequenciacio>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p>ESCANEJOS REALITZATS</p>
+    <h3>ESCANEJOS</h3>
+    <app-escaneig [pacient_id]="pacient.id"></app-escaneig>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-6 col-lg-6">
-    DOS NIÑOS
-  </div>
-  <div class="col-md-4 offset-md-2">
-    SE PELEANDFSGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  DFGSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-    LAS MATEMATICAS
-    LAS MATEMATICASLAS MATEMATICAS
-    LAS MATEMATICAS
-    LAS MATEMATIMATEMATICASCAS
-    LAS MATEMATICAS
-    LAS MATEMATICAS
-    LAS MATEMATICAS
-    V
-    LAS MATEMATICAS
-    VLAS MATEMATICASLAS MATEMATICASLAS MATEMATICASLAS MATEMATICASLAS MATEMATICASLAS MATEMATICASLAS MATEMATICASLAS MATEMATICASLAS MATEMATICASLAS
 
-  </div>
-</div>
