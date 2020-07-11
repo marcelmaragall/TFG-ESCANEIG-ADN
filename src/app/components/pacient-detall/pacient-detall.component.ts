@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {PacientService} from "../../services/pacient.service";
 import {Pacient} from "../../models/Pacient";
 import {Observable} from "rxjs";
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {DiagnosticPacientComponent} from "../diagnostic-pacient/diagnostic-pacient.component";
 
 
 @Component({
@@ -10,6 +11,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   templateUrl: './pacient-detall.component.html',
   styleUrls: ['./pacient-detall.component.css']
 })
+
 export class PacientDetallComponent implements OnInit {
 
   constructor(private pacientService: PacientService, private route: ActivatedRoute) { }
@@ -46,5 +48,9 @@ export class PacientDetallComponent implements OnInit {
       console.log(params['id']);
     });
   }
+
+  // ngAfterViewInit(): void {
+  //   this.diagnostics.getDiagnostics(this.pacient.id)
+  // }
 
 }

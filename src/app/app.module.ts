@@ -28,13 +28,16 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 
 import { PacientListComponent } from './components/pacient-list/pacient-list.component'
 import { PacientFormComponent } from './components/pacient-form/pacient-form.component'
+import { PacientDetallComponent } from './components/pacient-detall/pacient-detall.component'
 import { AlertComponent } from './components/alert/alert.component'
+import {HomeComponent} from "./home/home.component";
+import { PatologiaListComponent } from './components/patologia-list/patologia-list.component';
+import { DiagnosticPacientComponent } from './components/diagnostic-pacient/diagnostic-pacient.component';
 
 
 // Services
 import { PacientService } from './services/pacient.service';
-import {HomeComponent} from "./home/home.component";
-import { PatologiaListComponent } from './components/patologia-list/patologia-list.component';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -47,9 +50,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NavigationComponent,
     PacientListComponent,
     PacientFormComponent,
+    PacientDetallComponent,
     AlertComponent,
     HomeComponent,
-    PatologiaListComponent
+    PatologiaListComponent,
+    DiagnosticPacientComponent,
   ],
   imports: [
     BrowserModule,
