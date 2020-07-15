@@ -15,8 +15,12 @@ export class EscaneigService {
     return this.http.get(`${this.API_URI}`)
   }
 
-  getScans(id: number) {
-    return this.http.get(`${this.API_URI}/${id}`)
+  getScansByPacient(id: number) {
+    return this.http.get(`${this.API_URI}/pacient/${id}`)
+  }
+
+  getScansBySeq(id: number) {
+    return this.http.get(`${this.API_URI}/seq/${id}`)
   }
 
   deleteScans(id: number) {

@@ -36,6 +36,10 @@ export class AccountService {
       }));
   }
 
+  getPatologiesUser(id: number){
+    return this.http.get(`${AppConfig.apiUrl}/api/user/${id}/patologies`);
+  }
+
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');

@@ -14,12 +14,12 @@ export class SequenciacioService {
 
   }
 
-  getSequenciacio() {
-    return this.http.get(`${this.API_URI}`)
+  getSequenciacio(id: number) {
+    return this.http.get(`${this.API_URI}/${id}`)
   }
 
-  getSequenciacions(id: number) {
-    return this.http.get(`${this.API_URI}/${id}`)
+  getSequenciacionsByPacient(id: number) {
+    return this.http.get(`${this.API_URI}/pacient/${id}`)
   }
 
   deleteSequenciacio(id: number) {

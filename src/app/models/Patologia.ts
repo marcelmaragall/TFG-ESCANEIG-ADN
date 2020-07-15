@@ -1,5 +1,5 @@
 export interface Patologia {
-  //id: number;
+  id: number;
   nom?: string;
   ncbid: string;
   descripcio: string;

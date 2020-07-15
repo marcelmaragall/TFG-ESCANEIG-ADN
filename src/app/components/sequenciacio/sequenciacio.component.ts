@@ -20,10 +20,10 @@ export class SequenciacioComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-  getSequenciacions(id: number): Observable<Sequenciacio[]> {
+  getSequenciacionsByPacient(id: number): Observable<Sequenciacio[]> {
 
     // @ts-ignore
-    return this.seqService.getSequenciacions<Sequenciacio[]>(id).subscribe(
+    return this.seqService.getSequenciacionsByPacient<Sequenciacio[]>(id).subscribe(
       s => {
         this.sequenciacions = s;
       },
@@ -33,7 +33,7 @@ export class SequenciacioComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if(this.pacient_id) {
-      this.getSequenciacions(this.pacient_id);
+      this.getSequenciacionsByPacient(this.pacient_id);
     }
   }
 

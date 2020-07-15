@@ -13,13 +13,25 @@ export class EscaneigComponent implements OnInit, OnChanges {
   constructor(private escaneigService: EscaneigService) { }
 
   @Input() pacient_id: number;
+  @Input() seq_id: number;
 
   scans: Escaneig[] = [];
 
-  getScans(id:number): Observable<Escaneig[]> {
+  getScansByPacient(id:number): Observable<Escaneig[]> {
 
     // @ts-ignore
-    return this.escaneigService.getScans<Escaneig[]>(id).subscribe(
+    return this.escaneigService.getScansByPacient<Escaneig[]>(id).subscribe(
+      s => {
+        this.scans = s;
+      },
+      err => console.error(err)
+    )
+  }
+
+  getScansBySeq(id:number): Observable<Escaneig[]> {
+
+    // @ts-ignore
+    return this.escaneigService.getScansBySeq<Escaneig[]>(id).subscribe(
       s => {
         this.scans = s;
       },
@@ -33,7 +45,10 @@ export class EscaneigComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     if (this.pacient_id) {
-      this.getScans(this.pacient_id);
+      this.getScansByPacient(this.pacient_id);
+    }
+    if (this.seq_id) {
+      this.getScansBySeq(this.seq_id)
     }
   }
 
