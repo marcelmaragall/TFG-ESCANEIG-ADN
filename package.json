@@ -94,7 +94,8 @@
     "node": ">=10.13.0"
   },
   "dependencies": {
-    "jquery": "3.5.1",
-    "bootstrap": "4.5.0"
+    "autocomplete-lhc": "18.1.1",
+    "bootstrap": "4.5.0",
+    "jquery": "3.5.1"
   }
 }

@@ -40,6 +40,11 @@ export class AccountService {
     return this.http.get(`${AppConfig.apiUrl}/api/user/${id}/patologies`);
   }
 
+  savePatologiaUser(body: any) {
+    console.log("disparo");
+    return this.http.post(`${AppConfig.apiUrl}/api/user/patologies`, body);
+  }
+
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
