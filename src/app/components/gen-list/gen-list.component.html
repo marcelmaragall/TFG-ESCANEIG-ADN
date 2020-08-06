@@ -1,0 +1,29 @@
+<h3>GENS LIST</h3>
+<br>
+<br>
+<div class="row">
+  <div class="col">
+    <h3>SEARCH</h3>
+    <input type="text" id="gens" placeholder="Gen">
+    <ul id="lista">
+    </ul>
+    <button id="genButton" (click)="guardaGens()" onclick="this.blur();"> Guarda </button>
+  </div>
+</div>
+<div class="row">
+  <div *ngIf="gensUsuari" class="col">
+    <div *ngFor="let g of gensUsuari">
+      <div class="card text-center">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-lg-center">
+          <p>{{g.simbol}}</p>
+          <p>{{g.geneID}}</p>
+          <p>{{g.descripcio}}</p>
+          <p>{{g.cromosoma}}</p>
+          <p>{{g.locus}}</p>
+          <p>{{g.tipus}}</p>
+          <p>{{g.sinonims}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
