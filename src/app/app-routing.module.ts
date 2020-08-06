@@ -14,6 +14,8 @@ import { AuthGuard } from './helpers/auth.guard';
 import {HomeComponent} from "./home/home.component";
 import {SequenciacioDetallComponent} from "./components/sequenciacio-detall/sequenciacio-detall.component";
 import {PatologiaListComponent} from "./components/patologia-list/patologia-list.component";
+import {GenListComponent} from "./components/gen-list/gen-list.component";
+import {PatologiaDetallComponent} from "./components/patologia-detall/patologia-detall.component";
 
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
@@ -58,11 +60,15 @@ const routes: Routes = [
   },
   {
     path: 'gens',
-    component: PacientListComponent
+    component: GenListComponent
   },
   {
     path: 'patologies',
     component: PatologiaListComponent
+  },
+  {
+    path: 'patologies/:id',
+    component: PatologiaDetallComponent
   },
   {
     path: '**',

@@ -16,12 +16,14 @@
         <div>
           <p>{{p.comentaris}}</p>
         </div>
+        <a [routerLink]="['/patologies/', p.id]" class="btn btn-info btn-block">
+          DETALLS
+        </a>
       </div>
     </div>
   </div>
   <div class="col-md-4">
     <h3>SEARCH</h3>
-    <!--<input id="disease" placeholder="Disease" autocomplete-lhc="https://clinicaltables.nlm.nih.gov/api/conditions/v3/search" ng-model="selectedVal">-->
     <input type="text" id="disease" placeholder="Disease">
     <p>
       ICD-9 Code:  <input type="text" id="code" placeholder="ICD-9 Code">

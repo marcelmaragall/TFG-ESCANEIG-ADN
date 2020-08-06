@@ -91,6 +91,7 @@ export class PatologiaListComponent implements OnInit, OnChanges {
        var autocomp = disease.autocomp;
        var itemData = autocomp.getSelectedItemData();
        console.log(itemData);
+       console.log("carallo");
 
        // $('#icd9_code')[0].value = itemData && itemData[0].data ?
        //   itemData[0].data.term_icd9_code  : '';

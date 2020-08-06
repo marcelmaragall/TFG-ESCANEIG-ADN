@@ -43,6 +43,9 @@ import { DiagnosticPacientService } from "./services/diagnostic-pacient.service"
 import {SequenciacioService} from "./services/sequenciacio.service";
 import {EscaneigService} from "./services/escaneig.service";
 import { SequenciacioDetallComponent } from './components/sequenciacio-detall/sequenciacio-detall.component';
+import { GenListComponent } from './components/gen-list/gen-list.component';
+import { PatologiaDetallComponent } from './components/patologia-detall/patologia-detall.component';
+import { BuscadorPatologiesComponent } from './components/buscador-patologies/buscador-patologies.component';
 
 
 // AoT requires an exported function for factories
@@ -64,6 +67,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SequenciacioComponent,
     EscaneigComponent,
     SequenciacioDetallComponent,
+    GenListComponent,
+    PatologiaDetallComponent,
+    BuscadorPatologiesComponent,
   ],
   imports: [
     BrowserModule,
