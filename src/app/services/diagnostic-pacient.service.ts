@@ -30,5 +30,13 @@ export class DiagnosticPacientService {
     return this.http.post(`${this.API_URI}`, diagnostic)
   }
 
+  // savePatologiaPacient(body: any) {
+  //   return this.http.post(`${this.API_URI}/patologies`, body);
+  // }
+
+  savePatologiaPacient(diagnostic: Diagnostic) {
+    return this.http.post(`${this.API_URI}`, diagnostic);
+  }
+
 
 }

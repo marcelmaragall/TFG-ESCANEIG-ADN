@@ -19,16 +19,13 @@
   <div class="col-md-8">
     <h3>MALALTIES DIAGNOSTICADES</h3>
     <app-diagnostic-pacient [pacient_id]="pacient.id"></app-diagnostic-pacient>
-    <app-buscador-patologies></app-buscador-patologies>
+    <app-buscador-patologies (newItemEvent)="guardaDiagnostics($event)"></app-buscador-patologies>
   </div>
 </div>
-
-<div class="row">
-  <div class="col">
-    <h3>SEQÜENCIACIONS</h3>
-    <app-sequenciacio [pacient_id]="pacient.id"></app-sequenciacio>
-  </div>
-</div>
+<br>
+<br>
+<br>
+<app-sequenciacio [pacient_id]="pacient.id" [DNI]="pacient.dni"></app-sequenciacio>
 <div class="row">
   <div class="col-md-12">
     <h3>ESCANEJOS</h3>

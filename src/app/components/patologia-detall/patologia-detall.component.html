@@ -10,7 +10,10 @@
 <div class="row">
   <div *ngIf="gensAssociats" class="col-md-8">
     <div *ngFor="let g of gensAssociats">
-      <p>{{g.id}}</p>
+      <p>{{g.MIM}}</p>
+      <p>{{g.official_symbol}}</p>
+      <p>{{g.chromosome}}</p>
+      <br>
     </div>
   </div>
   <div *ngIf="gensAssociats.length == 0" class="col-md-8">

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 
 import { Pacient } from '../models/Pacient'
 import {Observable} from "rxjs";
+import {AppConfig} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,5 @@ export class PacientService {
   updatePacient(id: number, updatedPacient: Pacient): Observable<Pacient> {
     return this.http.put<Pacient>(`${this.API_URI}/${id}`, updatedPacient)
   }
-
 
 }

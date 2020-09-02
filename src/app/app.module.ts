@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { MaterialModule} from "./material/material.module";
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -46,6 +47,10 @@ import { SequenciacioDetallComponent } from './components/sequenciacio-detall/se
 import { GenListComponent } from './components/gen-list/gen-list.component';
 import { PatologiaDetallComponent } from './components/patologia-detall/patologia-detall.component';
 import { BuscadorPatologiesComponent } from './components/buscador-patologies/buscador-patologies.component';
+import { FileUploadComponent } from "./components/file-upload/file-upload.component";
+import { SequenciaListComponent } from './components/sequencia-list/sequencia-list.component';
+import { SequenciaFormComponent } from './components/sequencia-form/sequencia-form.component';
+import { NouEscaneigComponent } from './components/nou-escaneig/nou-escaneig.component';
 
 
 // AoT requires an exported function for factories
@@ -70,6 +75,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     GenListComponent,
     PatologiaDetallComponent,
     BuscadorPatologiesComponent,
+    NouEscaneigComponent,
+    //FileUploadComponent,
+    // SequenciaListComponent,
+    // SequenciaFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +90,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     //HomeModule,
     DetailModule,
     AppRoutingModule,
+    MaterialModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

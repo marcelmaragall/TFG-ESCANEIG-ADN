@@ -24,13 +24,7 @@
   </div>
   <div class="col-md-4">
     <h3>SEARCH</h3>
-    <input type="text" id="disease" placeholder="Disease">
-    <p>
-      ICD-9 Code:  <input type="text" id="code" placeholder="ICD-9 Code">
-    <p>
-    <ul id="lista">
-    </ul>
-    <!--<input type="text" id="disis" placeholder="Disease">-->
-    <button id="reilord" (click)="guardaPatologies()" onclick="this.blur();"> Guarda </button>
+    <app-buscador-patologies (newItemEvent)="guardaPatologies($event)"></app-buscador-patologies>
+    <!--<button id="reilord" (click)="guardaPatologies()" onclick="this.blur();"> Guarda </button>-->
   </div>
 </div>

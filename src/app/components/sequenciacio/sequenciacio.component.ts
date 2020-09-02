@@ -14,6 +14,7 @@ export class SequenciacioComponent implements OnInit, OnChanges {
   constructor( private seqService: SequenciacioService) { }
 
   @Input() pacient_id: number;
+  @Input() DNI: string;
 
   sequenciacions: Sequenciacio[] = [];
 

@@ -1,8 +1,16 @@
-<div class="col-md-4" *ngFor="let seq of sequenciacions">
-  <div class="bg-dark text-white d-flex justify-content-between align-items-lg-center">
-    <p  [routerLink]="['/sequenciacions/', seq.id]">{{seq.nom}}</p>
+<div>
+  <h5>SEQUENCIACIONS</h5>
+</div>
+<div class="row sequenciacions">
+  <div class="col-md-8" *ngFor="let seq of sequenciacions">
+      <div class="bg-dark text-white d-flex justify-content-between align-items-lg-center">
+        <!--<p  [routerLink]="['/sequenciacions/', seq.id]">{{seq.nom}}</p>-->
+        <p  [routerLink]="['/sequencia/', seq.id]" [state]="{data: [pacient_id, DNI]}">{{seq.nom}}</p>
+      </div>
+      <p>{{seq.data}}</p>
+      <p>{{seq.estat}}</p>
+    </div>
+  <div class="col-md-4">
+    <button [routerLink]="['/sequencia/']" [state]="{data: [pacient_id, DNI]}">Afegeix Sequencia</button>
   </div>
-  <p>{{seq.tipus}}</p>
-  <p>{{seq.data}}</p>
-  <p>{{seq.descripcio}}</p>
 </div>

@@ -1,6 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatGridListModule} from "@angular/material/grid-list";
+import  {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserModule } from '@angular/platform-browser';
+
 
 //import { HomeRoutingModule } from './home/home-routing.module';
 import { DetailRoutingModule } from './detail/detail-routing.module';
@@ -16,6 +26,10 @@ import {SequenciacioDetallComponent} from "./components/sequenciacio-detall/sequ
 import {PatologiaListComponent} from "./components/patologia-list/patologia-list.component";
 import {GenListComponent} from "./components/gen-list/gen-list.component";
 import {PatologiaDetallComponent} from "./components/patologia-detall/patologia-detall.component";
+import {SequenciaFormComponent} from "./components/sequencia-form/sequencia-form.component";
+import {FileUploadComponent} from "./components/file-upload/file-upload.component";
+import {NouEscaneigComponent} from "./components/nou-escaneig/nou-escaneig.component";
+
 
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
@@ -59,12 +73,24 @@ const routes: Routes = [
     component: SequenciacioDetallComponent
   },
   {
+    path: 'sequencia/:id',
+    component: SequenciaFormComponent
+  },
+  {
+    path: 'sequencia',
+    component: SequenciaFormComponent
+  },
+  {
     path: 'gens',
     component: GenListComponent
   },
   {
     path: 'patologies',
     component: PatologiaListComponent
+  },
+  {
+    path: 'nouEscaneig',
+    component: NouEscaneigComponent
   },
   {
     path: 'patologies/:id',
@@ -79,10 +105,29 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
     //UsersRoutingModule
     //HomeRoutingModule,
     //DetailRoutingModule
   ],
-  exports: [RouterModule]
+  exports: [
+    RouterModule,
+  ],
+  declarations: [
+    SequenciaFormComponent,
+    FileUploadComponent
+  ],
+  providers: [
+    MatDatepickerModule
+  ]
+
 })
 export class AppRoutingModule { }

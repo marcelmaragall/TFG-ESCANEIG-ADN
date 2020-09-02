@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 var Def = require('autocomplete-lhc');
 
 @Component({
@@ -10,12 +11,13 @@ export class BuscadorPatologiesComponent implements OnInit {
 
   constructor() { }
 
-  @Input
+
+  @Output() newItemEvent = new EventEmitter<any[]>();
 
   cercaActual = [];
 
-  boton(): void {
-
+  guardaPatologies() {
+    this.newItemEvent.emit(this.cercaActual);
   }
 
   ngOnInit(): void {
@@ -28,14 +30,14 @@ export class BuscadorPatologiesComponent implements OnInit {
       var disease = $('#disease')[0];
       var autocomp = disease.autocomp;
       var itemData = autocomp.getSelectedItemData();
-      console.log(itemData);
 
       if (itemData) {
         var arrayLength = itemData.length;
         let cercaActual = [];
         for (var i = 0; i < arrayLength; i++) {
-          console.log(itemData[i]);
-          cercaActual.push(itemData[i]);
+          if (itemData[i].code) {
+            cercaActual.push(itemData[i]);
+          }
         }
         this.cercaActual = cercaActual;
       }

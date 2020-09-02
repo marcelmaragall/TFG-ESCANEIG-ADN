@@ -41,12 +41,10 @@ export class AccountService {
   }
 
   savePatologiaUser(body: any) {
-    console.log("disparo");
     return this.http.post(`${AppConfig.apiUrl}/api/user/patologies`, body);
   }
 
   getGensUser(id: number){
-    console.log("arrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
     return this.http.get(`${AppConfig.apiUrl}/api/user/${id}/gens`);
   }
 

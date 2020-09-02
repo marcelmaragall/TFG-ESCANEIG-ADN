@@ -38,12 +38,10 @@ export class PatologiaDetallComponent implements OnInit {
         }
       )
     }
-    console.log("FINAL");
     console.log(this.gensAssociats)
   }
 
   getGenMIMs(MedGenCUI: string): void {
-    console.log("getGens");
 
     //1. buscar MIM a traves del codi de la malaltia a la nova taula mim2genes
     this.medgenService.getMIM(MedGenCUI).subscribe(
@@ -64,11 +62,8 @@ export class PatologiaDetallComponent implements OnInit {
         const fetchPromise = fetch(URL);
 
         fetchPromise.then(response => {
-
           return response.json();
-
         }).then(body => {
-
           let entry = body.omim.entryList[0].entry;
           if (entry.phenotypeMapList) {
             //3. Extreure els MIMs
@@ -98,15 +93,11 @@ export class PatologiaDetallComponent implements OnInit {
 
       },
       err => {
-        console.log("error db localhost")
         console.error(err)
-        console.log("error db localhost")
       },
        () => {
-         console.log("ata qui llegemos");
          this.getGenMIMs(this.patologia.ncbid);
        }
-
     )
   }
 
