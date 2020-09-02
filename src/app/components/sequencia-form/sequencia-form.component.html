@@ -1,0 +1,121 @@
+<div>
+<h1 *ngIf="isAddMode">Afegeix Sequencia</h1>
+<h1 *ngIf="!isAddMode">Edita Sequencia</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col">
+      <label for="nom">Nom</label>
+      <input type="text" formControlName="nom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" [readOnly]="!isAddMode" />
+      <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+        <div *ngIf="f.nom.errors.required">El nom és obligatori</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="cromossoma">Cromossoma</label>
+      <input type="text" formControlName="cromossoma" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cromossoma.errors }" />
+      <div *ngIf="submitted && f.cromossoma.errors" class="invalid-feedback">
+        <div *ngIf="f.cromossoma.errors.required">El cromossoma és obligatori</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="data">Data de sequenciació</label>
+      <input formControlName="data" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.data.errors }" />
+      <div *ngIf="submitted && f.data.errors" class="invalid-feedback">
+        <div *ngIf="f.data.errors.required">La data és obligatòria</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="laboratori">Laboratori</label>
+      <input type="text" formControlName="laboratori" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.laboratori.errors }" />
+      <div *ngIf="submitted && f.laboratori.errors" class="invalid-feedback">
+        <div *ngIf="f.laboratori.errors.required">El laboratori és obligatori</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label for="descripcio">Descripció</label>
+      <input type="text" formControlName="descripcio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcio.errors }" />
+      <div *ngIf="submitted && f.descripcio.errors" class="invalid-feedback">
+        <div *ngIf="f.descripcio.errors.required">La descripcio és obligatòria</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button [disabled]="!fitxerOK" class="btn btn-primary">
+      <!--<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>-->
+      Save
+    </button>
+    <a routerLink="/pacients/{{pacient_id}}" class="btn btn-link">Cancel</a>
+  </div>
+</form>
+  <app-file-upload (newItemEvent)="hiHaFitxer($event)" [sequenciaRegistrada]="eventSubject.asObservable()" ></app-file-upload>
+</div>
+<div>
+  <button routerLink="/nouEscaneig/">Nou Escaneig</button>
+</div>
+
+
+<!--
+
+<h1 *ngIf="isAddMode">Afegeix Sequencia</h1>
+<h1 *ngIf="!isAddMode">Edita Sequencia</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div>
+        <label for="nom">Nom</label>
+        <input type="text" formControlName="nom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" [readOnly]="!isAddMode" />
+        <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+          <div *ngIf="f.nom.errors.required">El nom és obligatori</div>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="cromossoma">Cromossoma</label>
+        <input type="text" formControlName="cromossoma" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cromossoma.errors }" />
+        <div *ngIf="submitted && f.cromossoma.errors" class="invalid-feedback">
+          <div *ngIf="f.cromossoma.errors.required">El cromossoma és obligatori</div>
+        </div>
+      </div>
+      <div class="form-group col">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="data">
+          <mat-datepicker-toggle matSuffix [for]="data"></mat-datepicker-toggle>
+          <mat-datepicker></mat-datepicker>
+        </mat-form-field>
+
+        <label for="data">Data de sequenciació</label>
+        <input formControlName="data" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.data.errors }" />
+        <div *ngIf="submitted && f.data.errors" class="invalid-feedback">
+          <div *ngIf="f.data.errors.required">La data és obligatòria</div>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="laboratori">Laboratori</label>
+        <input type="text" formControlName="laboratori" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.laboratori.errors }" />
+        <div *ngIf="submitted && f.laboratori.errors" class="invalid-feedback">
+          <div *ngIf="f.laboratori.errors.required">El laboratori és obligatori</div>
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+        <label for="descripcio">Descripció</label>
+        <input type="text" formControlName="descripcio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcio.errors }" />
+        <div *ngIf="submitted && f.descripcio.errors" class="invalid-feedback">
+          <div *ngIf="f.descripcio.errors.required">La descripcio és obligatòria</div>
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button [disabled]="loading" class="btn btn-primary">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Save
+      </button>
+      <a routerLink="/users" class="btn btn-link">Cancel</a>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+-->
+
