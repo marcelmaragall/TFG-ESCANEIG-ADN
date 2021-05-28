@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, OnChanges} from '@angular/core';
-import {Observable} from "rxjs";
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Observable, Subject} from "rxjs";
 import { DiagnosticPacientService } from '../../services/diagnostic-pacient.service'
 import {Diagnostic} from "../../models/Diagnostic";
 
@@ -13,6 +13,7 @@ export class DiagnosticPacientComponent implements OnInit, OnChanges {
   constructor(private diagnosticService : DiagnosticPacientService) { }
 
   @Input() pacient_id: number;
+  @Input() resetComp:  boolean;
 
   diagnostics : any[];
 
@@ -26,13 +27,17 @@ export class DiagnosticPacientComponent implements OnInit, OnChanges {
     );
   }
 
-    ngOnInit(): void {
-      //this.getDiagnostics(this.pacient_id);
-    }
-
-    ngOnChanges() {
-    if(this.pacient_id) {
+  ngOnInit(): void {
+    if (this.pacient_id) {
       this.getDiagnostics(this.pacient_id);
+      console.log("updated diagnostics form for pacient: "+this.pacient_id)
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['resetComp'] !== undefined) {
+      this.getDiagnostics(this.pacient_id);
+      this.resetComp = false;
     }
   }
 

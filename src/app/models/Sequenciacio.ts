@@ -3,8 +3,9 @@ export interface Sequenciacio {
   nom?: string;
   cromossoma: string;
   laboratori: string
-  data: Date;
+  data: string;
   pacient: number;
-  descripcio: string;
+  comentari: string;
   estat: string;
+  fitxerSequencia: File;
 }

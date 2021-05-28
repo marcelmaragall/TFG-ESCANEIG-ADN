@@ -26,7 +26,7 @@ import {SequenciacioDetallComponent} from "./components/sequenciacio-detall/sequ
 import {PatologiaListComponent} from "./components/patologia-list/patologia-list.component";
 import {GenListComponent} from "./components/gen-list/gen-list.component";
 import {PatologiaDetallComponent} from "./components/patologia-detall/patologia-detall.component";
-import {SequenciaFormComponent} from "./components/sequencia-form/sequencia-form.component";
+import {SequenciacioFormComponent} from "./components/sequencia-form/sequencia-form.component";
 import {FileUploadComponent} from "./components/file-upload/file-upload.component";
 import {NouEscaneigComponent} from "./components/nou-escaneig/nou-escaneig.component";
 
@@ -74,11 +74,11 @@ const routes: Routes = [
   },
   {
     path: 'sequencia/:id',
-    component: SequenciaFormComponent
+    component: SequenciacioFormComponent
   },
   {
     path: 'sequencia',
-    component: SequenciaFormComponent
+    component: SequenciacioFormComponent
   },
   {
     path: 'gens',
@@ -122,7 +122,7 @@ const routes: Routes = [
     RouterModule,
   ],
   declarations: [
-    SequenciaFormComponent,
+    // SequenciaFormComponent,
     FileUploadComponent
   ],
   providers: [

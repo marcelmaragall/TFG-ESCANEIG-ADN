@@ -1,16 +1,45 @@
-<div>
-  <h5>SEQUENCIACIONS</h5>
+  <!--<div class="col-md-8" *ngFor="let seq of sequenciacions">-->
+      <!--<div class="bg-dark text-white d-flex justify-content-between align-items-lg-center">-->
+        <!--&lt;!&ndash;<p  [routerLink]="['/sequenciacions/', seq.id]">{{seq.nom}}</p>&ndash;&gt;-->
+        <!--<p  [routerLink]="['/sequencia/', seq.id]" [state]="{data: [pacient_id, DNI]}">{{seq.nom}}</p>-->
+      <!--</div>-->
+      <!--<p>{{seq.data}}</p>-->
+      <!--<p>{{seq.estat}}</p>-->
+    <!--</div>-->
+
+  <!--<div class="col-md-4">-->
+    <!--<button [routerLink]="['/sequencia/']" [state]="{data: [pacient_id, DNI]}">Afegeix Sequencia</button>-->
+  <!--</div>-->
+
+
+
+
+
+
+
+<div class="tableFixHead">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Data seqüenciació</th>
+      <th scope="col">Laboratori</th>
+      <th scope="col">Cromossoma</th>
+      <th scope="col">Estat</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let seq of seqService.sequenciacions">
+      <td>{{seq.nom}}</td>
+      <td>{{seq.data}}</td>
+      <td>{{seq.laboratori}}</td>
+      <td>{{seq.cromossoma}}</td>
+      <td>{{seq.estat}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
-<div class="row sequenciacions">
-  <div class="col-md-8" *ngFor="let seq of sequenciacions">
-      <div class="bg-dark text-white d-flex justify-content-between align-items-lg-center">
-        <!--<p  [routerLink]="['/sequenciacions/', seq.id]">{{seq.nom}}</p>-->
-        <p  [routerLink]="['/sequencia/', seq.id]" [state]="{data: [pacient_id, DNI]}">{{seq.nom}}</p>
-      </div>
-      <p>{{seq.data}}</p>
-      <p>{{seq.estat}}</p>
-    </div>
-  <div class="col-md-4">
-    <button [routerLink]="['/sequencia/']" [state]="{data: [pacient_id, DNI]}">Afegeix Sequencia</button>
-  </div>
-</div>
+<br>
+<!--<div class="col-md-4">-->
+  <!--<button [routerLink]="['/sequencia/']" [state]="{data: [pacient_id, DNI]}">Afegeix Sequencia</button>-->
+<!--</div>-->

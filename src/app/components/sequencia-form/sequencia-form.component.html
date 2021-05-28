@@ -1,59 +1,81 @@
-<div>
-<h1 *ngIf="isAddMode">Afegeix Sequencia</h1>
-<h1 *ngIf="!isAddMode">Edita Sequencia</h1>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-row">
-    <div class="form-group col">
-      <label for="nom">Nom</label>
-      <input type="text" formControlName="nom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" [readOnly]="!isAddMode" />
-      <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
-        <div *ngIf="f.nom.errors.required">El nom és obligatori</div>
+<form [formGroup]="sequenciacioService.form" class="normal-form">
+  <mat-grid-list cols="4" rowHeight="200px">
+
+    <mat-grid-tile colspan="3" rowspan="1">
+      <div class="controles-container">
+        <!--<input type="hidden" formControlName="$key">-->
+        <mat-form-field>
+          <input formControlName="nom" matInput placeholder="Nom">
+          <mat-error *ngIf="sequenciacioService.form.controls['nom'].errors">Camp obligatori. Només s'accepten valors alfanumèrics i '_'.</mat-error>
+          <!--<mat-error *ngIf="sequenciacioService.form.controls['nom'].errors?.valid">Aquest nom o és incorrecte o ja existeix</mat-error>-->
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="laboratori" matInput placeholder="Laboratori">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="cromossoma" matInput placeholder="Cromossoma">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="data"
+                 matInput [matDatepicker]="dp"
+                 placeholder="Data Seqüenciació"
+          >
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp></mat-datepicker>
+        </mat-form-field>
       </div>
-    </div>
-    <div class="form-group col">
-      <label for="cromossoma">Cromossoma</label>
-      <input type="text" formControlName="cromossoma" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cromossoma.errors }" />
-      <div *ngIf="submitted && f.cromossoma.errors" class="invalid-feedback">
-        <div *ngIf="f.cromossoma.errors.required">El cromossoma és obligatori</div>
+    </mat-grid-tile>
+
+
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-form-field class="fitxerSeq">
+        <ngx-mat-file-input #fitxerInput formControlName="fitxerSequencia" placeholder="sequencia FASTA aquí" ></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+        <button mat-icon-button matSuffix *ngIf="!fitxerInput.empty" (click)="fitxerInput.clear($event)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="3" rowspan="1">
+      <div class="controles-container-comentari">
+        <mat-form-field appearance="fill" style="width: 600px;">
+          <mat-label>Comentari</mat-label>
+          <textarea class="comentari" matInput formControlName="comentari" placeholder="Comentari"></textarea>
+        </mat-form-field>
       </div>
-    </div>
-    <div class="form-group col">
-      <label for="data">Data de sequenciació</label>
-      <input formControlName="data" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.data.errors }" />
-      <div *ngIf="submitted && f.data.errors" class="invalid-feedback">
-        <div *ngIf="f.data.errors.required">La data és obligatòria</div>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="sequenciacioService.form.invalid" (click)="onSubmit()">Puja</button>
+        <button mat-raised-button color="warn" (click)="onClear()">Neteja</button>
       </div>
-    </div>
-    <div class="form-group col">
-      <label for="laboratori">Laboratori</label>
-      <input type="text" formControlName="laboratori" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.laboratori.errors }" />
-      <div *ngIf="submitted && f.laboratori.errors" class="invalid-feedback">
-        <div *ngIf="f.laboratori.errors.required">El laboratori és obligatori</div>
-      </div>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col">
-      <label for="descripcio">Descripció</label>
-      <input type="text" formControlName="descripcio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcio.errors }" />
-      <div *ngIf="submitted && f.descripcio.errors" class="invalid-feedback">
-        <div *ngIf="f.descripcio.errors.required">La descripcio és obligatòria</div>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <button [disabled]="!fitxerOK" class="btn btn-primary">
-      <!--<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>-->
-      Save
-    </button>
-    <a routerLink="/pacients/{{pacient_id}}" class="btn btn-link">Cancel</a>
-  </div>
+    </mat-grid-tile>
+
+
+
+  </mat-grid-list>
 </form>
-  <app-file-upload (newItemEvent)="hiHaFitxer($event)" [sequenciaRegistrada]="eventSubject.asObservable()" ></app-file-upload>
-</div>
-<div>
-  <button routerLink="/nouEscaneig/">Nou Escaneig</button>
-</div>
+
+
+
+
+
+
+
+
+<!--<h2 mat-dialog-title>Afegeix Sequencia</h2>-->
+<!--<mat-dialog-content>-->
+<!--bsdfgfdsgfds-->
+<!--</mat-dialog-content>-->
+<!--<mat-dialog-actions align="end">-->
+  <!--<button mat-button mat-dialog-close>Cancel</button>-->
+  <!--<button mat-button [mat-dialog-close]="true">Puja seqüencia</button>-->
+<!--</mat-dialog-actions>-->
 
 
 <!--

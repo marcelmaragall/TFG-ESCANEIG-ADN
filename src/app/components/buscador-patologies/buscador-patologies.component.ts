@@ -1,4 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  OnChanges,
+} from '@angular/core';
+import {Router, NavigationEnd,ActivatedRoute} from '@angular/router';
+
 
 var Def = require('autocomplete-lhc');
 
@@ -17,20 +26,24 @@ export class BuscadorPatologiesComponent implements OnInit {
   cercaActual = [];
 
   guardaPatologies() {
+    console.log(this.cercaActual)
     this.newItemEvent.emit(this.cercaActual);
+    //$('.autocomp_selected ul').empty();
   }
 
   ngOnInit(): void {
 
     new Def.Autocompleter.Search('disease',
-      'https://clinicaltables.nlm.nih.gov/api/disease_names/v3/search?df=DiseaseName,ConceptID,chr',
-      {tableFormat: true, valueCols: [0], colHeaders: ['Name', 'Concept ID', 'Chromosome'], maxSelect: '*'});
+      'https://clinicaltables.nlm.nih.gov/api/disease_names/v3/search?df=DiseaseName,ConceptID',
+      {tableFormat: true, valueCols: [0], colHeaders: ['Name', 'Concept ID'], maxSelect: '*'});
 
     Def.Autocompleter.Event.observeListSelections('disease', () => {
       var disease = $('#disease')[0];
       var autocomp = disease.autocomp;
       var itemData = autocomp.getSelectedItemData();
-
+      console.log("!!!!");
+      console.log(autocomp);
+      console.log(itemData);
       if (itemData) {
         var arrayLength = itemData.length;
         let cercaActual = [];
@@ -43,6 +56,8 @@ export class BuscadorPatologiesComponent implements OnInit {
       }
     });
 
+    console.log(Def.Autocompleter)
   }
+
 
 }

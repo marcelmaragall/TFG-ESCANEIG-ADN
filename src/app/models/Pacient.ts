@@ -9,5 +9,6 @@ export interface Pacient {
   ciutat?: string;
   address?: string;
   usuari: number;
+  altres_dades: string;
   created_at?: Date
 }

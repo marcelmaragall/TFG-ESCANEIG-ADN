@@ -49,7 +49,7 @@ import { PatologiaDetallComponent } from './components/patologia-detall/patologi
 import { BuscadorPatologiesComponent } from './components/buscador-patologies/buscador-patologies.component';
 import { FileUploadComponent } from "./components/file-upload/file-upload.component";
 import { SequenciaListComponent } from './components/sequencia-list/sequencia-list.component';
-import { SequenciaFormComponent } from './components/sequencia-form/sequencia-form.component';
+import { SequenciacioFormComponent } from './components/sequencia-form/sequencia-form.component';
 import { NouEscaneigComponent } from './components/nou-escaneig/nou-escaneig.component';
 
 
@@ -76,6 +76,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     PatologiaDetallComponent,
     BuscadorPatologiesComponent,
     NouEscaneigComponent,
+    SequenciacioFormComponent
     //FileUploadComponent,
     // SequenciaListComponent,
     // SequenciaFormComponent,
@@ -103,6 +104,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  //entryComponents:[SequenciaFormComponent]
 })
 export class AppModule {}

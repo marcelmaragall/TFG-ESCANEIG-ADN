@@ -1,25 +1,37 @@
+//Core
 import { Component, OnInit, ViewChild} from '@angular/core';
+import {Observable, Subject} from "rxjs";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+//Models
+import {Diagnostic} from "../../models/Diagnostic";
+import {Pacient} from "../../models/Pacient";
+
+//Components
+import {SequenciacioFormComponent} from "../sequencia-form/sequencia-form.component";
+import {DiagnosticPacientComponent} from "../diagnostic-pacient/diagnostic-pacient.component";
+
+//Services
+import {DiagnosticPacientService} from "../../services/diagnostic-pacient.service";
+import {AccountService} from "../../services/account.service";
 import {PacientService} from "../../services/pacient.service";
 import {PatologiaService} from "../../services/patologia.service.";
-import {Pacient} from "../../models/Pacient";
-import {Observable} from "rxjs";
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {DiagnosticPacientComponent} from "../diagnostic-pacient/diagnostic-pacient.component";
-import {DiagnosticPacientService} from "../../services/diagnostic-pacient.service";
-import {Diagnostic} from "../../models/Diagnostic";
-import {compareSegments} from "@angular/compiler-cli/ngcc/src/sourcemaps/segment_marker";
-import {AccountService} from "../../services/account.service";
+import {SequenciacioService} from "../../services/sequenciacio.service";
+
+//Material
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+
 
 
 @Component({
   selector: 'app-pacient-detall',
-  templateUrl: './pacient-detall.component.html',
+  templateUrl: './a_pacient_detall.component.html',
   styleUrls: ['./pacient-detall.component.css']
 })
 
 export class PacientDetallComponent implements OnInit {
 
-  constructor(private pacientService: PacientService, private patologiaService: PatologiaService, private diagnosticService: DiagnosticPacientService, private accountService: AccountService,private route: ActivatedRoute) { }
+  constructor(private pacientService: PacientService, private patologiaService: PatologiaService, private diagnosticService: DiagnosticPacientService, private accountService: AccountService,private route: ActivatedRoute, private dialog: MatDialog, private seqService: SequenciacioService) { }
 
   // @ts-ignore
   pacient : Pacient = {};
@@ -39,11 +51,21 @@ export class PacientDetallComponent implements OnInit {
     comentaris: '',
   };
 
+  resetDiagnosticsComp : boolean;
+  pacientIsLoaded: boolean;
+
+  //resetFormSubject: Subject<boolean> = new Subject<boolean>();
+  resetChildForm(){
+    //this.resetFormSubject.next(true);
+  }
+
+
   getPacient(id: number): Observable<Pacient>{
     // @ts-ignore
     return this.pacientService.getPacient<Pacient>(id).subscribe(
       p => {
         this.pacient = p;
+        this.pacientIsLoaded = true;
       },
       err => console.error(err)
     );
@@ -64,9 +86,10 @@ export class PacientDetallComponent implements OnInit {
           this.diagnostic.pacient_id = this.pacient.id;
           this.diagnostic.patologia_id = patologiaID.id;
           this.diagnostic.nomPatologia = llistaPatologies[i].text;
+          //TODO afegir data diagnostik
           console.log("la patologia es: "+llistaPatologies[i].text)
           // this.diagnosticService.savePatologiaPacient({patologia_id: patologiaID.id, pacient_id: this.pacient.id, nomPatologia: patologiaID.nom }).subscribe(
-          this.diagnosticService.savePatologiaPacient(this.diagnostic).subscribe(
+          this.diagnosticService.saveDiagnostic(this.diagnostic).subscribe(
             res => {
               console.log(res);
             },
@@ -80,6 +103,13 @@ export class PacientDetallComponent implements OnInit {
                 },
                 err => {
                   console.log(err);
+                },
+                () => {
+                  if (this.resetDiagnosticsComp) {
+                    this.resetDiagnosticsComp = false;
+                  } else {
+                    this.resetDiagnosticsComp = true;
+                  }
                 }
               )
             }
@@ -87,6 +117,19 @@ export class PacientDetallComponent implements OnInit {
         }
       );
     }
+  }
+
+  openDialog() {
+    this.seqService.initializeFormGroup();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    const dialogRef = this.dialog.open(SequenciacioFormComponent, dialogConfig);
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   }
 
   ngOnInit(): void {
