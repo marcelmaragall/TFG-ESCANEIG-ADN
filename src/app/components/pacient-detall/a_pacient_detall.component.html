@@ -1,0 +1,74 @@
+<br>
+<div class="row">
+
+  <div class="col-5 border border-primary rounded h-100">
+    <h1>{{pacient.nom}} {{pacient.cognoms}}</h1>
+    <br>
+
+    <dl class="row">
+      <dt class="col-sm-4">DNI</dt>
+      <dd class="col-sm-8">{{pacient.dni}}</dd>
+
+      <dt class="col-sm-4">Correu electrònic</dt>
+      <dd class="col-sm-8">{{pacient.ce}}</dd>
+
+      <dt class="col-sm-4">Telèfon</dt>
+      <dd class="col-sm-8">{{pacient.telefon}}</dd>
+
+      <dt class="col-sm-4">Adreça</dt>
+      <dd class="col-sm-8">{{pacient.address}}, {{pacient.ciutat}}, {{pacient.pais}}</dd>
+    </dl>
+  </div>
+
+
+  <div class="col-6 offset-1 border border-warning">
+    <div class="row">
+      <div class="col">
+        <h4 class="mt-2 mb-3">Patologies diagnosticades</h4>
+        <div *ngIf = "pacientIsLoaded">
+          <app-diagnostic-pacient [resetComp]="resetDiagnosticsComp" [pacient_id]="pacient.id"></app-diagnostic-pacient>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col mb-2">
+        <app-buscador-patologies (newItemEvent)="guardaDiagnostics($event)"></app-buscador-patologies>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br>
+
+
+<div class="row">
+  <div class="col">
+    <h4 class="mt-2 mb-3">Seqüenciacions</h4>
+    <app-sequenciacio [pacient_id]="pacient.id" [DNI]="pacient.dni"></app-sequenciacio>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <!--<button [routerLink]="['/sequencia/']" [state]="{data: [pacient_id, DNI]}">Afegeix Sequencia</button>-->
+    <button mat-raised-button (click)="openDialog()">
+      <mat-icon>add</mat-icon>Afegeix Sequencia
+    </button>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col">
+    <!--<app-escaneig [pacient_id]="pacient.id"></app-escaneig>-->
+  </div>
+</div>
+<div class="row">
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
