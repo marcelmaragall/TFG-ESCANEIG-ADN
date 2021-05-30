@@ -1,6 +1,6 @@
 import {Component, OnChanges, OnInit, Input} from '@angular/core';
-import {EscaneigService} from "../../services/escaneig.service";
-import {Escaneig} from "../../models/Escaneig";
+import {EscanerService} from "../../services/escaner.service";
+import {Escaner} from "../../models/Escaner";
 import {Observable} from "rxjs";
 
 @Component({
@@ -10,17 +10,17 @@ import {Observable} from "rxjs";
 })
 export class EscaneigComponent implements OnInit, OnChanges {
 
-  constructor(private escaneigService: EscaneigService) { }
+  constructor(private escaneigService: EscanerService) { }
 
   @Input() pacient_id: number;
   @Input() seq_id: number;
 
-  scans: Escaneig[] = [];
+  scans: Escaner[] = [];
 
-  getScansByPacient(id:number): Observable<Escaneig[]> {
+  getScansByPacient(id:number): Observable<Escaner[]> {
 
     // @ts-ignore
-    return this.escaneigService.getScansByPacient<Escaneig[]>(id).subscribe(
+    return this.escaneigService.getScansByPacient<Escaner[]>(id).subscribe(
       s => {
         this.scans = s;
       },
@@ -28,10 +28,10 @@ export class EscaneigComponent implements OnInit, OnChanges {
     )
   }
 
-  getScansBySeq(id:number): Observable<Escaneig[]> {
+  getScansBySeq(id:number): Observable<Escaner[]> {
 
     // @ts-ignore
-    return this.escaneigService.getScansBySeq<Escaneig[]>(id).subscribe(
+    return this.escaneigService.getScansBySeq<Escaner[]>(id).subscribe(
       s => {
         this.scans = s;
       },

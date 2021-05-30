@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {PatologiaService} from "../../services/patologia.service.";
+import {PatologiaService} from "../../services/patologia.service";
 import {Patologia} from "../../models/Patologia";
 import {AccountService} from "../../services/account.service";
 var Def = require('autocomplete-lhc');

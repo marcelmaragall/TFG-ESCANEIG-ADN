@@ -14,6 +14,7 @@ export class PatologiaService {
 
 
   getPatologia(id: number) {
+    console.log("seguimos")
     return this.http.get(`${this.API_URI}/${id}`)
   }
 

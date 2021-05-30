@@ -1,4 +1,4 @@
-export interface Escaneig {
+export interface Escaner {
   id: number;
   codi_scan: string;
   descripcio: string;

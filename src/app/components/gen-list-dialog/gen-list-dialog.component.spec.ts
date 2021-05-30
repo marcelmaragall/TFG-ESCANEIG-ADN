@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SequenciaListComponent } from './sequencia-list.component';
+import { GenListDialogComponent } from './gen-list-dialog.component';
 
-describe('SequenciaListComponent', () => {
-  let component: SequenciaListComponent;
-  let fixture: ComponentFixture<SequenciaListComponent>;
+describe('GenListDialogComponent', () => {
+  let component: GenListDialogComponent;
+  let fixture: ComponentFixture<GenListDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SequenciaListComponent ]
+      declarations: [ GenListDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SequenciaListComponent);
+    fixture = TestBed.createComponent(GenListDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

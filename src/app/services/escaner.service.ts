@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Escaneig} from "../models/Escaneig";
+import {Escaner} from "../models/Escaner";
 
 @Injectable({
   providedIn: 'root'
 })
-export class EscaneigService {
+export class EscanerService {
 
   constructor(private http: HttpClient) { }
+
+  scans: Escaner[] = [];
 
   API_URI = 'http://localhost:3000/api/scan';
 
@@ -27,7 +29,7 @@ export class EscaneigService {
     return this.http.delete(`${this.API_URI}/${id}`)
   }
 
-  saveScans(escaneig: Escaneig) {
+  saveScans(escaneig: Escaner) {
     return this.http.post(`${this.API_URI}`, escaneig)
   }
 

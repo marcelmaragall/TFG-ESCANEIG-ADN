@@ -1,0 +1,5 @@
+/* mat-table */
+.escaner-container {
+  height: 250px;
+  overflow: auto;
+}

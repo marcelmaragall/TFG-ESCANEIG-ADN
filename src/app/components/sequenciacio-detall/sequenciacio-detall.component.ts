@@ -1,5 +1,5 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import {Sequenciacio} from "../../models/Sequenciacio";
+import {Sequenciacio} from "../../models/Sequenciaci";
 import {Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {SequenciacioService} from "../../services/sequenciacio.service";

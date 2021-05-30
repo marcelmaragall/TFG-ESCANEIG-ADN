@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Sequenciacio } from '../models/Sequenciacio'
+import { Sequenciacio } from '../models/Sequenciaci'
 import {RxReactiveFormsModule, RxwebValidators} from "@rxweb/reactive-form-validators";
 
 @Injectable({

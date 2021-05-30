@@ -5,9 +5,10 @@ import {Observable} from "rxjs";
 import {Pacient} from "../../models/Pacient";
 import {ActivatedRoute} from "@angular/router";
 import {Patologia} from "../../models/Patologia";
-import {PatologiaService} from "../../services/patologia.service.";
+import {PatologiaService} from "../../services/patologia.service";
 import {concatAll} from "rxjs/operators";
 import {GenService} from "../../services/gen.service";
+import {AccountService} from "../../services/account.service";
 
 
 @Component({
@@ -17,13 +18,16 @@ import {GenService} from "../../services/gen.service";
 })
 export class PatologiaDetallComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private medgenService: MedgenService, private patologiaService: PatologiaService, private  genService: GenService) { }
+  constructor(private route: ActivatedRoute, private medgenService: MedgenService, private patologiaService: PatologiaService, private  genService: GenService, private accountService: AccountService) { }
 
   MIMList = [];
   gensAssociats : any[] = [];
   //gensAssociats : Gen[] = [];
   MIM : number;
   patologia : Patologia;
+  usuari_id: number;
+  patologia_id: number;
+  isDataAvailable: boolean = false;
 
 
 
@@ -31,6 +35,8 @@ export class PatologiaDetallComponent implements OnInit {
     for (var i = 0; i < this.MIMList.length; i++) {
       this.genService.getGenByMIM(this.MIMList[i]).subscribe(
         gen => {
+          console.log("marica")
+          console.log(gen)
           this.gensAssociats.push(gen);
         },
         err => {
@@ -87,10 +93,7 @@ export class PatologiaDetallComponent implements OnInit {
      return this.patologiaService.getPatologia<Patologia>(id).subscribe(
       p => {
         this.patologia = p;
-        console.log("***")
-        console.log(p)
-        console.log("***")
-
+        this.isDataAvailable = true;
       },
       err => {
         console.error(err)
@@ -102,11 +105,13 @@ export class PatologiaDetallComponent implements OnInit {
   }
 
     ngOnInit(): void {
+      this.usuari_id = this.accountService.userValue.id;
       this.route.params.subscribe(params => {
-      this.getPatologia(params['id']);
-    },
+        this.patologia_id = params['id'];
+        this.getPatologia(params['id']);
+        },
           err => {
-      console.log("No s'ha pogut carregar la patologia")
+        console.log("No s'ha pogut carregar la patologia")
       }
     );
   }

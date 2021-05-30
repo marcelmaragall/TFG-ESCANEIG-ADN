@@ -1,0 +1,37 @@
+<div class="mat-elevation-z8 escaner-container">
+  <mat-table [dataSource]="listData" matSort>
+    <ng-container matColumnDef="codi_scan">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Codi escàner</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.codi_scan}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="data">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Data</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.data}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="seq">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Seqüència</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.seq}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button><mat-icon>launch</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data...
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        No data.
+      </mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

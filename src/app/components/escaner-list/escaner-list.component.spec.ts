@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NouEscaneigComponent } from './nou-escaneig.component';
+import { EscanerListComponent } from './escaner-list.component';
 
-describe('NouEscaneigComponent', () => {
-  let component: NouEscaneigComponent;
-  let fixture: ComponentFixture<NouEscaneigComponent>;
+describe('EscanerListComponent', () => {
+  let component: EscanerListComponent;
+  let fixture: ComponentFixture<EscanerListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NouEscaneigComponent ]
+      declarations: [ EscanerListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NouEscaneigComponent);
+    fixture = TestBed.createComponent(EscanerListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

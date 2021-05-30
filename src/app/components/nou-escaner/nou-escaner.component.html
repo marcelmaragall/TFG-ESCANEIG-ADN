@@ -1,0 +1,39 @@
+<div class="row">
+  <div id="sequencia_col" class="col-md-3">
+    <div class="text-center">
+      <h3>SEQÜÈNCIA</h3>
+    </div>
+    <mat-selection-list #seqs [multiple]="false" class="scan-container" (selectionChange)="onSelectionSeq($event)">
+      <mat-list-option *ngFor="let seq of data.sequenciacions" [value]="seq.id">
+        {{seq.nom}}
+    </mat-list-option>
+    </mat-selection-list>
+    <p>Seleccsao: {{seqs.selectedOptions.selected[0]?.value}}</p>
+  </div>
+  <div id="patologies_col" class="col-md-3">
+    <div class="text-center">
+      <h3>PATOLOGIES</h3>
+    </div>
+    <mat-selection-list #pats [multiple]="true" class="scan-container" (selectionChange)="onSelectionPat($event)">
+      <mat-list-option *ngFor="let d of diagnosticsList" [value]="d.patologia_id">
+        {{d.nomPatologia}}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <div id="gens_col" class="col-md-3">
+    <div class="text-center">
+      <h3>GENS</h3>
+      <mat-selection-list #gens [multiple]="true" class="scan-container" (selectionChange)="onSelectionGen($event)">
+        <mat-list-option *ngFor="let g of gensList" [value]="g.id">
+          {{g.simbol}}
+        </mat-list-option>
+      </mat-selection-list>
+
+    </div>
+  </div>
+  <div id="sequencia_col" class="col-md-3">
+    <div class="text-center">
+      <h3>LLISTAT FINAL</h3>
+    </div>
+  </div>
+</div>

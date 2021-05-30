@@ -1,23 +1,76 @@
 <div class="row">
-
-  <div class="col">
-    <!--<h3>{{pacient.nom}} {{pacient.cognoms}}</h3>-->
-    EL MENAS
+  <div clas="col">
+    <div class="row" *ngIf="isDataAvailable">
+      <div class="col">
+        <br>
+        <h3>{{patologia.nom}}</h3>
+        <p class="pl-1">NCB ID: {{patologia.ncbid}}</p>
+      </div>
   </div>
-
+</div>
 </div>
 
 <div class="row">
-  <div *ngIf="gensAssociats" class="col-md-8">
-    <div *ngFor="let g of gensAssociats">
-      <p>{{g.MIM}}</p>
-      <p>{{g.official_symbol}}</p>
-      <p>{{g.chromosome}}</p>
-      <br>
+
+  <div class="col-md-11 mt-4 ml-2">
+
+    <div class="row" *ngIf="isDataAvailable">
+      <div class="col-4">
+        <p>Comentaris:</p>
+        <pre class="comentari">{{patologia.descripcio}}</pre>
+      </div>
+
+      <div class="col-8 border">
+        <p class="text-center mt-4">Gens associats segons OMIM</p>
+        <div *ngIf="gensAssociats">
+          <div class="tableFixHead">
+            <table class="table text-center">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">Símbol</th>
+                <th scope="col">Cromossoma i locus</th>
+                <th scope="col">MIM ID</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let g of gensAssociats">
+                <td>{{g.official_symbol}}</td>
+                <td>{{g.chromosome}}</td>
+                <td>{{g.MIM}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="gensAssociats.length == 0">
+          NO HI HA GENS ASSOCIATS DISPONIBLES
+        </div>
+
+        <br>
+        <hr>
+        <div class="row">
+          <div class="col">
+        <p class="text-center">Gens associats segons l'usuari</p>
+        <app-gen-patologia-usuari [usuari_id]="usuari_id" [patologia_id]="patologia_id"></app-gen-patologia-usuari>
+        </div>
+        </div>
+      </div>
     </div>
+
+
+
+
+
+
+
+
+
   </div>
-  <div *ngIf="gensAssociats.length == 0" class="col-md-8">
-    NO HI HA GENS ASSOCIATS DISPONIBLES
+
+  <div class="col-md-1">
   </div>
+
 </div>
+
+
 

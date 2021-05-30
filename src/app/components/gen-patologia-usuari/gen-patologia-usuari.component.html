@@ -1,0 +1,22 @@
+<div class="tableFixHead">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Símbol</th>
+      <th scope="col">Locus</th>
+      <th scope="col">MIM ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let g of gensAssociats">
+      <td>{{g.official_symbol}}</td>
+      <td>{{g.locus}}</td>
+      <td>{{g.mim}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<button mat-raised-button (click)="openGenDialog()" class="text-center">
+  <mat-icon>add</mat-icon>Afegeix associació
+</button>

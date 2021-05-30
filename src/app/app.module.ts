@@ -42,15 +42,17 @@ import { PacientService } from './services/pacient.service';
 import { SequenciacioComponent } from './components/sequenciacio/sequenciacio.component';
 import { DiagnosticPacientService } from "./services/diagnostic-pacient.service";
 import {SequenciacioService} from "./services/sequenciacio.service";
-import {EscaneigService} from "./services/escaneig.service";
+import {EscanerService} from "./services/escaner.service";
 import { SequenciacioDetallComponent } from './components/sequenciacio-detall/sequenciacio-detall.component';
 import { GenListComponent } from './components/gen-list/gen-list.component';
 import { PatologiaDetallComponent } from './components/patologia-detall/patologia-detall.component';
 import { BuscadorPatologiesComponent } from './components/buscador-patologies/buscador-patologies.component';
 import { FileUploadComponent } from "./components/file-upload/file-upload.component";
-import { SequenciaListComponent } from './components/sequencia-list/sequencia-list.component';
 import { SequenciacioFormComponent } from './components/sequencia-form/sequencia-form.component';
-import { NouEscaneigComponent } from './components/nou-escaneig/nou-escaneig.component';
+import { EscanerListComponent } from './components/escaner-list/escaner-list.component';
+import { NouEscanerComponent } from './components/nou-escaner/nou-escaner.component';
+import { GenPatologiaUsuariComponent } from './components/gen-patologia-usuari/gen-patologia-usuari.component';
+import { GenListDialogComponent } from './components/gen-list-dialog/gen-list-dialog.component';
 
 
 // AoT requires an exported function for factories
@@ -75,8 +77,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     GenListComponent,
     PatologiaDetallComponent,
     BuscadorPatologiesComponent,
-    NouEscaneigComponent,
-    SequenciacioFormComponent
+    SequenciacioFormComponent,
+    EscanerListComponent,
+    NouEscanerComponent,
+    GenPatologiaUsuariComponent,
+    GenListDialogComponent
     //FileUploadComponent,
     // SequenciaListComponent,
     // SequenciaFormComponent,
@@ -100,11 +105,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [PacientService, DiagnosticPacientService,SequenciacioService, EscaneigService,
+  providers: [PacientService, DiagnosticPacientService,SequenciacioService, EscanerService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  //entryComponents:[SequenciaFormComponent]
+  entryComponents:[SequenciacioFormComponent, NouEscanerComponent]
 })
 export class AppModule {}

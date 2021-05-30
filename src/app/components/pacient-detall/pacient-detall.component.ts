@@ -15,11 +15,13 @@ import {DiagnosticPacientComponent} from "../diagnostic-pacient/diagnostic-pacie
 import {DiagnosticPacientService} from "../../services/diagnostic-pacient.service";
 import {AccountService} from "../../services/account.service";
 import {PacientService} from "../../services/pacient.service";
-import {PatologiaService} from "../../services/patologia.service.";
+import {PatologiaService} from "../../services/patologia.service";
 import {SequenciacioService} from "../../services/sequenciacio.service";
 
 //Material
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {NouEscanerComponent} from "../nou-escaner/nou-escaner.component";
+import {Sequenciacio} from "../../models/Sequenciaci";
 
 
 
@@ -50,6 +52,8 @@ export class PacientDetallComponent implements OnInit {
     nomPatologia: '',
     comentaris: '',
   };
+
+  sequenciacions: Sequenciacio[];
 
   resetDiagnosticsComp : boolean;
   pacientIsLoaded: boolean;
@@ -119,13 +123,41 @@ export class PacientDetallComponent implements OnInit {
     }
   }
 
-  openDialog() {
+  sequenciacionsHandler(seqs: any[]){
+    console.log(seqs);
+    this.sequenciacions = seqs;
+  }
+
+  openSeqDialog() {
     this.seqService.initializeFormGroup();
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
     const dialogRef = this.dialog.open(SequenciacioFormComponent, dialogConfig);
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
+  }
+
+  openScanDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "80%";
+    let indexedSeqs = [];
+    for (let i=0; i< this.sequenciacions.length;i++) {
+      if (this.sequenciacions[i].estat == 'indexing') {
+        indexedSeqs.push(this.sequenciacions[i])
+      }
+    }
+    console.log("datos "+this.pacient.id)
+    dialogConfig.data = {
+      sequenciacions: indexedSeqs,
+      pacient_id: this.pacient.id
+    };
+    const dialogRef = this.dialog.open(NouEscanerComponent, dialogConfig);
 
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log(`Dialog result: ${result}`);

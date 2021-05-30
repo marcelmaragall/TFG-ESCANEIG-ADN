@@ -28,7 +28,6 @@ import {GenListComponent} from "./components/gen-list/gen-list.component";
 import {PatologiaDetallComponent} from "./components/patologia-detall/patologia-detall.component";
 import {SequenciacioFormComponent} from "./components/sequencia-form/sequencia-form.component";
 import {FileUploadComponent} from "./components/file-upload/file-upload.component";
-import {NouEscaneigComponent} from "./components/nou-escaneig/nou-escaneig.component";
 
 
 
@@ -87,10 +86,6 @@ const routes: Routes = [
   {
     path: 'patologies',
     component: PatologiaListComponent
-  },
-  {
-    path: 'nouEscaneig',
-    component: NouEscaneigComponent
   },
   {
     path: 'patologies/:id',

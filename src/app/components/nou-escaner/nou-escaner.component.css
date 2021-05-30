@@ -1,0 +1,6 @@
+/* mat-table */
+.scan-container {
+  height: 700px;
+  overflow: auto;
+}
+.scan-container mat-selection-list { position: sticky; top: 0; z-index: 1; }

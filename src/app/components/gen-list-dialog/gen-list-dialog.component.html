@@ -1,0 +1,47 @@
+<div class="container-gens">
+  <div class="row">
+    <div class="col text-center">
+      <h3>Selecciona els gens associats a la malaltia</h3>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div id="patologies_col" class="col-md-7">
+
+  <!--    <mat-selection-list #gens [multiple]="true" (selectionChange)="onSelectionGen($event)">
+        <mat-list-option *ngFor="let g of data.gens" [value]="g.id">
+          {{g.simbol}}
+        </mat-list-option>
+      </mat-selection-list>-->
+
+
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Selecciona Gens" aria-label="Select Users" matInput [matAutocomplete]="auto" [formControl]="genControl">
+        <mat-hint>Enter text to find gens by simbol</mat-hint>
+      </mat-form-field>
+
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let gen of filteredGens | async" [value]="selectedGens">
+          <div (click)="optionClicked($event, gen)">
+            <mat-checkbox [checked]="gen.selected" (change)="toggleSelection(gen)" (click)="$event.stopPropagation()">
+              {{ gen.simbol }}
+            </mat-checkbox>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+    <div class="col-md-3">
+
+      <label>Selected Gens:</label>
+      <mat-list dense>
+        <mat-list-item *ngIf="selectedGens?.length === 0">(None)</mat-list-item>
+        <mat-list-item *ngFor="let gen of selectedGens">
+          {{ gen.simbol }}
+        </mat-list-item>
+      </mat-list>
+
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-success" id="associaGens" (click)="associaGens()" onclick="this.blur();"> Associa </button>
+    </div>
+  </div>
+</div>

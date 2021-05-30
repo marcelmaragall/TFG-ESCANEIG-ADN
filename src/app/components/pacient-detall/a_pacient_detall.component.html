@@ -46,26 +46,33 @@
 <div class="row">
   <div class="col">
     <h4 class="mt-2 mb-3">Seqüenciacions</h4>
-    <app-sequenciacio [pacient_id]="pacient.id" [DNI]="pacient.dni"></app-sequenciacio>
+    <app-sequenciacio [pacient_id]="pacient.id" [DNI]="pacient.dni" (sequenciacions)="sequenciacionsHandler($event)"></app-sequenciacio>
   </div>
 </div>
 <div class="row">
   <div class="col">
     <!--<button [routerLink]="['/sequencia/']" [state]="{data: [pacient_id, DNI]}">Afegeix Sequencia</button>-->
-    <button mat-raised-button (click)="openDialog()">
-      <mat-icon>add</mat-icon>Afegeix Sequencia
+    <button mat-raised-button (click)="openSeqDialog()">
+      <mat-icon>add</mat-icon>Afegeix Sequenciació
     </button>
   </div>
 </div>
 
+<br>
 
 <div class="row">
   <div class="col">
-    <!--<app-escaneig [pacient_id]="pacient.id"></app-escaneig>-->
+    <h4 class="mt-2 mb-3">Escàners</h4>
+    <app-escaner-list [pacient_id]="pacient.id"></app-escaner-list>
   </div>
 </div>
+<br>
 <div class="row">
-
+  <div class="col text-center">
+  <button type="button" class="btn btn-info btn-lg" (click)="openScanDialog()" >
+    <mat-icon class="scan-icon">add</mat-icon> Nou escàner
+  </button>
+  </div>
 </div>
 <br>
 <br>

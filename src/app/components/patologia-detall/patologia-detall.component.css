@@ -1,0 +1,11 @@
+.table          { overflow: auto;}
+.table thead th { position: sticky; top: 0; z-index: 1;
+}
+
+th, td { padding: 8px 16px; }
+th     { background: #7ac1ee; }
+
+.comentari {
+  height: 800px;
+  background: aqua;
+}
