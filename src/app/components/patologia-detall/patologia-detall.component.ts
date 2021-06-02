@@ -28,6 +28,7 @@ export class PatologiaDetallComponent implements OnInit {
   usuari_id: number;
   patologia_id: number;
   isDataAvailable: boolean = false;
+  comentari: string;
 
 
 
@@ -109,6 +110,12 @@ export class PatologiaDetallComponent implements OnInit {
       this.route.params.subscribe(params => {
         this.patologia_id = params['id'];
         this.getPatologia(params['id']);
+
+        this.accountService.getPatologiaUser(this.usuari_id, this.patologia_id).subscribe(
+          res => {
+            this.comentari = res["comentaris"]
+          }
+        )
         },
           err => {
         console.log("No s'ha pogut carregar la patologia")

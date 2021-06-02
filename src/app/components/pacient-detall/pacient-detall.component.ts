@@ -43,7 +43,6 @@ export class PacientDetallComponent implements OnInit {
   patologia: any = {
     nom: '',
     ncbid: '',
-    descripcio: ''
   };
 
   diagnostic: Diagnostic = {
@@ -79,7 +78,6 @@ export class PacientDetallComponent implements OnInit {
     for (let i=0; i<llistaPatologies.length;i++) {
       this.patologia.nom = llistaPatologies[i].text;
       this.patologia.ncbid = llistaPatologies[i].code;
-      this.patologia.descripcio = '';
       let patologiaID;
       this.patologiaService.savePatologia(this.patologia).subscribe(
         pat => {

@@ -6,6 +6,10 @@ th, td { padding: 8px 16px; }
 th     { background: #7ac1ee; }
 
 .comentari {
-  height: 800px;
+  height: 600px;
   background: aqua;
+}
+
+pre {
+  white-space: pre-wrap;
 }

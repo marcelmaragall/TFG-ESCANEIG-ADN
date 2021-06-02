@@ -15,12 +15,12 @@
   <div class="col-md-11 mt-4 ml-2">
 
     <div class="row" *ngIf="isDataAvailable">
-      <div class="col-4">
+      <div class="col-6">
         <p>Comentaris:</p>
-        <pre class="comentari">{{patologia.descripcio}}</pre>
+        <pre class="comentari">{{comentari}}</pre>
       </div>
 
-      <div class="col-8 border">
+      <div class="col-6 border">
         <p class="text-center mt-4">Gens associats segons OMIM</p>
         <div *ngIf="gensAssociats">
           <div class="tableFixHead">

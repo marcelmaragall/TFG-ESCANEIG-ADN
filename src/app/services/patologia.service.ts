@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Diagnostic} from "../models/Diagnostic";
 import {HttpClient} from "@angular/common/http";
 import {Patologia} from "../models/Patologia";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class PatologiaService {
   API_URI = 'http://localhost:3000/api/patologia';
 
   constructor(private http: HttpClient) { }
+
+  patologiesUsuari: MatTableDataSource<any>;
 
 
   getPatologia(id: number) {

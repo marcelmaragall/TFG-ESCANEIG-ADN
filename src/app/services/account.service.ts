@@ -8,6 +8,7 @@ import { AppConfig } from '../../environments/environment';
 
 
 import { User} from "../models/user";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -40,8 +41,19 @@ export class AccountService {
     return this.http.get(`${AppConfig.apiUrl}/api/user/${id}/patologies`);
   }
 
+  getPatologiaUser(usuari_id: number, patologia_id: number){
+    console.log("to the moon")
+    console.log(usuari_id)
+    console.log(patologia_id)
+    return this.http.get(`${AppConfig.apiUrl}/api/user/patologies?user_id=${usuari_id}&pat_id=${patologia_id}`);
+  }
+
   savePatologiaUser(body: any) {
     return this.http.post(`${AppConfig.apiUrl}/api/user/patologies`, body);
+  }
+
+  updatePatologiaUser(body: any, pu_id: number) {
+    return this.http.put(`${AppConfig.apiUrl}/api/user/patologies/${pu_id}`, body);
   }
 
   getGensUser(id: number){
@@ -97,5 +109,15 @@ export class AccountService {
         }
         return x;
       }));
+  }
+
+  patologiaForm: FormGroup = new FormGroup({
+    comentaris: new FormControl(),
+  });
+
+  initializeFormGroup() {
+    this.patologiaForm.setValue({
+      comentaris: '',
+    });
   }
 }

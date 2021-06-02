@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {GenPatologiaUsuariService} from "../../services/gen-patologia-usuari.service";
 import {Gen} from "../../models/Gen";
 import {GenService} from "../../services/gen.service";
@@ -14,14 +14,12 @@ import {AccountService} from "../../services/account.service";
   templateUrl: './gen-patologia-usuari.component.html',
   styleUrls: ['./gen-patologia-usuari.component.css']
 })
-export class GenPatologiaUsuariComponent implements OnInit {
+export class GenPatologiaUsuariComponent implements OnInit, OnDestroy {
 
   constructor(private genPatUService: GenPatologiaUsuariService, private genService: GenService, private dialog: MatDialog, private accountService: AccountService) { }
 
   @Input() usuari_id: number;
   @Input() patologia_id: number;
-  gensAssociats: any[] = [];
-
 
   // @ts-ignore
   getGens(usuari_id: number, patologia_id: number): Observable<Gen[]> {
@@ -37,16 +35,17 @@ export class GenPatologiaUsuariComponent implements OnInit {
               let g = {
                 'official_symbol': gen.simbol,
                 'locus': gen.locus,
-                'mim': gen.mim,
-                'comentaris': gens[i].comentaris
+                'mimID': gen.mimID,
+                'comentaris': gens[i].comentaris,
+                'id': gen.id
               };
-              this.gensAssociats.push(g);
+              this.genPatUService.gensAssociats.push(g);
             }
           );
           console.log(i);
         }
         console.log("bamos a repassar")
-        console.log(this.gensAssociats)
+        console.log(this.genPatUService.gensAssociats)
       },
       err => {}
     )
@@ -77,6 +76,10 @@ export class GenPatologiaUsuariComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGens(this.usuari_id, this.patologia_id);
+  }
+
+  ngOnDestroy(): void {
+    this.genPatUService.gensAssociats = [];
   }
 
 }

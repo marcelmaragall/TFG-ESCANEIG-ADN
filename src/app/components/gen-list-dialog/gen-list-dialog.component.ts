@@ -1,11 +1,12 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Sequenciacio} from "../../models/Sequenciaci";
 import {Gen} from "../../models/Gen";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 import {startWith, map} from "rxjs/operators";
-
+import {GenPatologiaUsuariService} from "../../services/gen-patologia-usuari.service";
+//todo: https://stackblitz.com/edit/angular-sx79hu?embed=1&file=app/multiselect-autocomplete-example.html   <---- D'on m'he inspirat
 
 @Component({
   selector: 'app-gen-list-dialog',
@@ -14,7 +15,7 @@ import {startWith, map} from "rxjs/operators";
 })
 export class GenListDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {gens: Gen[], usuari_id: number, patologia_id: number})
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {gens: Gen[], usuari_id: number, patologia_id: number}, private associacionsService: GenPatologiaUsuariService, private dialogRef: MatDialogRef<GenListDialogComponent>)
   {}
 
   genControl = new FormControl();
@@ -74,6 +75,40 @@ export class GenListDialogComponent implements OnInit {
     }
 
     this.genControl.setValue(this.selectedGens);
+  }
+
+
+  associaGens(){
+    if (this.selectedGens){
+      console.log("que volemm mostar?");
+      for (const g of this.selectedGens){
+        let associacio = {
+          gen_id: g.id,
+          patologia_id: this.data.patologia_id,
+          user_id: this.data.usuari_id
+        };
+
+        this.associacionsService.saveGenByPatologiaAndUser(associacio).subscribe(
+          res =>{
+            if (res['text'] != 'existeix') {
+              let g_associat = {
+                'official_symbol': g.simbol,
+                'locus': g.locus,
+                'mimID': g.mimID,
+                'comentaris': '',
+                'id': g.id
+              };
+              this.associacionsService.gensAssociats.push(g_associat);
+            }
+            console.log(res)
+          },
+          err => {
+            console.error(err)
+          }
+        )
+      }
+      this.dialogRef.close()
+    }
   }
 
 

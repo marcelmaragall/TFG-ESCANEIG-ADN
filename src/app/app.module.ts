@@ -32,7 +32,7 @@ import { PacientFormComponent } from './components/pacient-form/pacient-form.com
 import { PacientDetallComponent } from './components/pacient-detall/pacient-detall.component'
 import { AlertComponent } from './components/alert/alert.component'
 import { HomeComponent } from "./home/home.component";
-import { PatologiaListComponent } from './components/patologia-list/patologia-list.component';
+import {EditPatologiaComponent, PatologiaListComponent} from './components/patologia-list/patologia-list.component';
 import { DiagnosticPacientComponent } from './components/diagnostic-pacient/diagnostic-pacient.component';
 import { EscaneigComponent } from './components/escaneig/escaneig.component';
 
@@ -81,7 +81,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     EscanerListComponent,
     NouEscanerComponent,
     GenPatologiaUsuariComponent,
-    GenListDialogComponent
+    GenListDialogComponent,
+    EditPatologiaComponent
     //FileUploadComponent,
     // SequenciaListComponent,
     // SequenciaFormComponent,
@@ -110,6 +111,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents:[SequenciacioFormComponent, NouEscanerComponent]
+  entryComponents:[SequenciacioFormComponent, NouEscanerComponent, EditPatologiaComponent]
 })
 export class AppModule {}
