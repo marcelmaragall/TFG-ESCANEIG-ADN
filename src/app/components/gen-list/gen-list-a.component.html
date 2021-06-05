@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col mt-4 text-center">
+    <h2>LLISTA DE GENS</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-7">
+
+
+    <div class="search-div">
+      <mat-form-field>
+        <mat-label class="mt-2">Filtre:</mat-label>
+        <input class="mt-3" matInput (keyup)="applyFilter($event)" placeholder="Escriu aquí" #input>
+      </mat-form-field>
+    </div>
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource]="genService.gensUsuari"  matSort>
+        <ng-container matColumnDef="simbol">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>Símbol</mat-header-cell>
+          <mat-cell *matCellDef="let element" [routerLink]="['/gens/', element.geneID]">{{element.simbol}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="cromosoma">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>Cromossoma</mat-header-cell>
+          <mat-cell *matCellDef="let element" [routerLink]="['/gens/', element.geneID]">{{element.cromosoma}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="locus">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>Locus</mat-header-cell>
+          <mat-cell *matCellDef="let element" [routerLink]="['/gens/', element.geneID]">{{element.locus}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="descripcio">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>Descripcio</mat-header-cell>
+          <mat-cell *matCellDef="let element" [routerLink]="['/gens/', element.geneID]">{{element.descripcio}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let row;">
+            <button mat-icon-button (click)="openEditDialog(row)"><mat-icon>launch</mat-icon></button>
+            <button mat-icon-button (click)="deleteGen(row)" color="warn"><mat-icon>delete</mat-icon></button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+    </div>
+
+  </div>
+  <div class="col-md-4 mt-4">
+    <h3>SEARCH</h3>
+    <app-buscador-gens (newItemEvent)="guardaGens($event)"></app-buscador-gens>
+  </div>
+</div>

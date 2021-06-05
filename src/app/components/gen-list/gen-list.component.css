@@ -1,0 +1,20 @@
+input {
+  height: 30px;
+  background: khaki;
+}
+mat-label {
+  color: black;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+}
+
+mat-row:hover {
+  background-color: silver;
+}
+
+/* mat-table */
+mat-cell, mat-header-cell{
+  justify-content: center;
+}

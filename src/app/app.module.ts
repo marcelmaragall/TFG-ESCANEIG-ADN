@@ -44,7 +44,7 @@ import { DiagnosticPacientService } from "./services/diagnostic-pacient.service"
 import {SequenciacioService} from "./services/sequenciacio.service";
 import {EscanerService} from "./services/escaner.service";
 import { SequenciacioDetallComponent } from './components/sequenciacio-detall/sequenciacio-detall.component';
-import { GenListComponent } from './components/gen-list/gen-list.component';
+import {EditGenComponent, GenListComponent} from './components/gen-list/gen-list.component';
 import { PatologiaDetallComponent } from './components/patologia-detall/patologia-detall.component';
 import { BuscadorPatologiesComponent } from './components/buscador-patologies/buscador-patologies.component';
 import { FileUploadComponent } from "./components/file-upload/file-upload.component";
@@ -53,6 +53,7 @@ import { EscanerListComponent } from './components/escaner-list/escaner-list.com
 import { NouEscanerComponent } from './components/nou-escaner/nou-escaner.component';
 import { GenPatologiaUsuariComponent } from './components/gen-patologia-usuari/gen-patologia-usuari.component';
 import { GenListDialogComponent } from './components/gen-list-dialog/gen-list-dialog.component';
+import { BuscadorGensComponent } from './components/buscador-gens/buscador-gens.component';
 
 
 // AoT requires an exported function for factories
@@ -82,7 +83,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NouEscanerComponent,
     GenPatologiaUsuariComponent,
     GenListDialogComponent,
-    EditPatologiaComponent
+    EditPatologiaComponent,
+    BuscadorGensComponent,
+    EditGenComponent
     //FileUploadComponent,
     // SequenciaListComponent,
     // SequenciaFormComponent,
@@ -111,6 +114,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents:[SequenciacioFormComponent, NouEscanerComponent, EditPatologiaComponent]
+  entryComponents:[SequenciacioFormComponent, NouEscanerComponent, EditPatologiaComponent, EditGenComponent]
 })
 export class AppModule {}

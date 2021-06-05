@@ -28,7 +28,7 @@
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let row;">
             <button mat-icon-button (click)="openEditDialog(row)"><mat-icon>launch</mat-icon></button>
-            <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+            <button mat-icon-button (click)="deletePatologia(row)" color="warn"><mat-icon>delete</mat-icon></button>
           </mat-cell>
         </ng-container>
 
@@ -38,7 +38,6 @@
       </mat-table>
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
     </div>
-
 
   </div>
   <div class="col-md-4 mt-4">

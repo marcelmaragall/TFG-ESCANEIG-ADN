@@ -7,6 +7,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {GenListDialogComponent} from "../gen-list-dialog/gen-list-dialog.component";
+import {NotificacioService} from "../../services/notificacio.service";
+import {GenPatologiaUsuariService} from "../../services/gen-patologia-usuari.service";
 
 var Def = require('autocomplete-lhc');
 
@@ -18,17 +20,10 @@ var Def = require('autocomplete-lhc');
 })
 export class PatologiaListComponent implements OnInit {
 
-  constructor(private patologiaService: PatologiaService, private accountService: AccountService, private dialog: MatDialog) { }
+  constructor(private patologiaService: PatologiaService, private accountService: AccountService, private dialog: MatDialog, private notificacioService: NotificacioService, private genPatUService: GenPatologiaUsuariService) { }
 
   @Input() idPatologia;
   @Input() nomPatologia;
-
-  patologia: any = {
-    nom: '',
-    ncbid: '',
-  };
-
-
 
   //patologiesUsuari: MatTableDataSource<any>;
   usuari_id : number;
@@ -52,27 +47,54 @@ export class PatologiaListComponent implements OnInit {
     )
   }
 
+  deletePatologia(row: any){
+    this.genPatUService.deleteGensByPatologiaAndUser(this.usuari_id, row.pat_id).subscribe(
+      res => {
+        this.accountService.deletePatologiaUser(row.pu_id).subscribe(
+          res => {
+            let index = -1;
+            for (let i=0; i<this.patologiaService.patologiesUsuari.data.length; i++){
+              if (this.patologiaService.patologiesUsuari.data[i].pu_id === row.pu_id) {
+                index = i;
+                console.log(i);
+              }
+            }
+            if (index !== -1) {
+              this.patologiaService.patologiesUsuari.data.splice(index, 1);
+              this.patologiaService.patologiesUsuari.data = this.patologiaService.patologiesUsuari.data;
+            }
+            this.notificacioService.warn('! Deleted successfully');
+          },
+          err => {
+            console.error(err);
+          }
+        );
+      }
+    );
+  }
+
 
   guardaPatologies(llistaPatologies: any[]){
+
     for (let i=0; i<llistaPatologies.length;i++) {
-      this.patologia.nom = llistaPatologies[i].text;
-      this.patologia.ncbid = llistaPatologies[i].code;
+
+      let p = {
+        nom: llistaPatologies[i].text,
+        ncbid: llistaPatologies[i].code
+      };
+
       let patologiaID;
       // @ts-ignore
-      this.patologiaService.savePatologia<any>(this.patologia).subscribe(
+      this.patologiaService.savePatologia<any>(p).subscribe(
         res => {
           patologiaID = res.id;
           this.accountService.savePatologiaUser({patologia_id: res.id, usuari_id: this.usuari_id}).subscribe(
             res => {
                 if (res['text'] != 'existeix') {
-
                   let data = this.patologiaService.patologiesUsuari.data;
-                  data.push({
-                    pu_id: res['pu_id'],
-                    pat_id: patologiaID,
-                    nom: this.patologia.nom,
-                    ncbid: this.patologia.ncbid
-                  });
+                  p['pat_id'] = patologiaID;
+                  p['pu_id'] = res['pu_id']
+                  data.push(p);
                   this.patologiaService.patologiesUsuari.data = data;
                }
             },
@@ -103,10 +125,15 @@ export class PatologiaListComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
+    let com = row.comentaris;
+    if (! row.com){
+      com = ''
+    }
+
     dialogConfig.data = {
       nom: row.nom,
       pu_id: row.pu_id,
-      comentaris: row.comentaris
+      comentaris: com
     };
     const dialogRef = this.dialog.open(EditPatologiaComponent, dialogConfig);
 
@@ -164,8 +191,6 @@ export class EditPatologiaComponent {
   guardaComentari(){
     this.accountService.updatePatologiaUser(this.accountService.patologiaForm.value, this.data.pu_id).subscribe(
       res => {
-        console.log("restaurante")
-
         this.dialogRef.close();
       }
     );

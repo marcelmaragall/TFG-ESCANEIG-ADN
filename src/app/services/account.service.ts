@@ -42,9 +42,6 @@ export class AccountService {
   }
 
   getPatologiaUser(usuari_id: number, patologia_id: number){
-    console.log("to the moon")
-    console.log(usuari_id)
-    console.log(patologia_id)
     return this.http.get(`${AppConfig.apiUrl}/api/user/patologies?user_id=${usuari_id}&pat_id=${patologia_id}`);
   }
 
@@ -56,6 +53,10 @@ export class AccountService {
     return this.http.put(`${AppConfig.apiUrl}/api/user/patologies/${pu_id}`, body);
   }
 
+  deletePatologiaUser(id:number) {
+    return this.http.delete(`${AppConfig.apiUrl}/api/user/patologies/${id}`)
+  }
+
   getGensUser(id: number){
     return this.http.get(`${AppConfig.apiUrl}/api/user/${id}/gens`);
   }
@@ -63,6 +64,14 @@ export class AccountService {
   saveGenUser(body: any) {
     console.log("disparo");
     return this.http.post(`${AppConfig.apiUrl}/api/user/gens`, body);
+  }
+
+  updateGenUser(body: any, gu_id: number) {
+    return this.http.put(`${AppConfig.apiUrl}/api/user/gens/${gu_id}`, body);
+  }
+
+  deleteGenUser(id:number) {
+    return this.http.delete(`${AppConfig.apiUrl}/api/user/gens/${id}`)
   }
 
   logout() {
@@ -115,9 +124,21 @@ export class AccountService {
     comentaris: new FormControl(),
   });
 
-  initializeFormGroup() {
+  initializePatologiaFormGroup() {
     this.patologiaForm.setValue({
       comentaris: '',
     });
   }
+
+  genForm: FormGroup = new FormGroup({
+    comentaris: new FormControl(),
+  });
+
+  initializeGenFormGroup() {
+    this.patologiaForm.setValue({
+      comentaris: '',
+    });
+  }
+
+
 }

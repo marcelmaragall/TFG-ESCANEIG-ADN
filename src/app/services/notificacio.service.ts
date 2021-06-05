@@ -25,6 +25,11 @@ export class NotificacioService {
     this.snackBar.open(msg, '', this.config)
   }
 
+  warn(msg) {
+    this.config['panelClass'] = ['notificaion', 'warn'];
+    this.snackBar.open(msg, '', this.config)
+  }
+
 
 
 

@@ -41,9 +41,6 @@ export class BuscadorPatologiesComponent implements OnInit {
       var disease = $('#disease')[0];
       var autocomp = disease.autocomp;
       var itemData = autocomp.getSelectedItemData();
-      console.log("!!!!");
-      console.log(autocomp);
-      console.log(itemData);
       if (itemData) {
         var arrayLength = itemData.length;
         let cercaActual = [];
