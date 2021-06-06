@@ -28,11 +28,10 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 // Components
 
 import { PacientListComponent } from './components/pacient-list/pacient-list.component'
-import { PacientFormComponent } from './components/pacient-form/pacient-form.component'
 import { PacientDetallComponent } from './components/pacient-detall/pacient-detall.component'
 import { AlertComponent } from './components/alert/alert.component'
 import { HomeComponent } from "./home/home.component";
-import {EditPatologiaComponent, PatologiaListComponent} from './components/patologia-list/patologia-list.component';
+import { EditPatologiaComponent, PatologiaListComponent} from './components/patologia-list/patologia-list.component';
 import { DiagnosticPacientComponent } from './components/diagnostic-pacient/diagnostic-pacient.component';
 import { EscaneigComponent } from './components/escaneig/escaneig.component';
 
@@ -54,6 +53,7 @@ import { NouEscanerComponent } from './components/nou-escaner/nou-escaner.compon
 import { GenPatologiaUsuariComponent } from './components/gen-patologia-usuari/gen-patologia-usuari.component';
 import { GenListDialogComponent } from './components/gen-list-dialog/gen-list-dialog.component';
 import { BuscadorGensComponent } from './components/buscador-gens/buscador-gens.component';
+import { PacientFormDialogComponent } from './components/pacient-form-dialog/pacient-form-dialog.component';
 
 
 // AoT requires an exported function for factories
@@ -66,7 +66,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppComponent,
     NavigationComponent,
     PacientListComponent,
-    PacientFormComponent,
     PacientDetallComponent,
     AlertComponent,
     HomeComponent,
@@ -85,7 +84,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     GenListDialogComponent,
     EditPatologiaComponent,
     BuscadorGensComponent,
-    EditGenComponent
+    EditGenComponent,
+    PacientFormDialogComponent
     //FileUploadComponent,
     // SequenciaListComponent,
     // SequenciaFormComponent,
@@ -114,6 +114,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents:[SequenciacioFormComponent, NouEscanerComponent, EditPatologiaComponent, EditGenComponent]
+  entryComponents:[SequenciacioFormComponent, NouEscanerComponent, EditPatologiaComponent, EditGenComponent, PacientFormDialogComponent]
 })
 export class AppModule {}

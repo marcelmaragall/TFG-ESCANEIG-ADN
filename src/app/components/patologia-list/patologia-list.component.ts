@@ -22,8 +22,8 @@ export class PatologiaListComponent implements OnInit {
 
   constructor(private patologiaService: PatologiaService, private accountService: AccountService, private dialog: MatDialog, private notificacioService: NotificacioService, private genPatUService: GenPatologiaUsuariService) { }
 
-  @Input() idPatologia;
-  @Input() nomPatologia;
+  // @Input() idPatologia;
+  // @Input() nomPatologia;
 
   //patologiesUsuari: MatTableDataSource<any>;
   usuari_id : number;

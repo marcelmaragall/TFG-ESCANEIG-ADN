@@ -143,14 +143,13 @@ export class PacientDetallComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "80%";
+    dialogConfig.width = "88%";
     let indexedSeqs = [];
     for (let i=0; i< this.sequenciacions.length;i++) {
-      if (this.sequenciacions[i].estat == 'indexing') {
+      if (this.sequenciacions[i].estat == 'done') {
         indexedSeqs.push(this.sequenciacions[i])
       }
     }
-    console.log("datos "+this.pacient.id)
     dialogConfig.data = {
       sequenciacions: indexedSeqs,
       pacient_id: this.pacient.id
@@ -173,5 +172,4 @@ export class PacientDetallComponent implements OnInit {
   // ngAfterViewInit(): void {
   //   this.diagnostics.getDiagnostics(this.pacient.id)
   // }
-
 }

@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FileUploadService {
 
-  API_URI = 'http://192.168.0.19:3000/api/addSeq';
+  API_URI = 'http://192.168.1.119:3000/api/addSeq';
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
 

@@ -74,6 +74,10 @@ export class AccountService {
     return this.http.delete(`${AppConfig.apiUrl}/api/user/gens/${id}`)
   }
 
+  getPacientsUser(id: number){
+    return this.http.get(`${AppConfig.apiUrl}/api/user/${id}/pacients`);
+  }
+
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');

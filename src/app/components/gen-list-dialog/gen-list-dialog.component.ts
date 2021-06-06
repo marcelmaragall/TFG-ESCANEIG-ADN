@@ -27,7 +27,6 @@ export class GenListDialogComponent implements OnInit {
 
   onSelectionGen(e){
     this.gens_ids = e.option.selectionList._value;
-    console.log(this.gens_ids)
   }
 
   ngOnInit(): void {
@@ -80,12 +79,12 @@ export class GenListDialogComponent implements OnInit {
 
   associaGens(){
     if (this.selectedGens){
-      console.log("que volemm mostar?");
       for (const g of this.selectedGens){
         let associacio = {
-          gen_id: g.id,
+          gen_id: g['gen_id'],
           patologia_id: this.data.patologia_id,
-          user_id: this.data.usuari_id
+          user_id: this.data.usuari_id,
+          simbol: g['simbol']
         };
 
         this.associacionsService.saveGenByPatologiaAndUser(associacio).subscribe(
@@ -100,7 +99,6 @@ export class GenListDialogComponent implements OnInit {
               };
               this.associacionsService.gensAssociats.push(g_associat);
             }
-            console.log(res)
           },
           err => {
             console.error(err)

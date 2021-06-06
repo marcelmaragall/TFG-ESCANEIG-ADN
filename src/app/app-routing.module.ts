@@ -17,7 +17,6 @@ import { DetailRoutingModule } from './detail/detail-routing.module';
 import {UsersRoutingModule} from './users/users-routing.module'
 
 import { PacientListComponent } from './components/pacient-list/pacient-list.component'
-import { PacientFormComponent } from './components/pacient-form/pacient-form.component'
 import { PacientDetallComponent } from './components/pacient-detall/pacient-detall.component'
 
 import { AuthGuard } from './helpers/auth.guard';
@@ -54,14 +53,6 @@ const routes: Routes = [
   {
     path: 'pacients',
     component: PacientListComponent
-  },
-  {
-    path: 'pacients/add',
-    component: PacientFormComponent
-  },
-  {
-    path: 'pacients/edit/:id',
-    component: PacientFormComponent
   },
   {
     path: 'pacients/:id',

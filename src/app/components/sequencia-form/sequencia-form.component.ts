@@ -111,6 +111,7 @@ export class SequenciacioFormComponent implements OnInit {
           //data => {
             //Si el registre es crea amb exit a la base de dades, procedim a enviar la sequencia al servidor de sequencies
             const formData = new FormData();
+            formData.append('seq_id', data['seq_id']);
             formData.append('DNI', this.sequenciacioService.pacient_dni);
             formData.append('nom_sequencia', this.sequenciacioService.form.value.nom);
             formData.append('file', this.sequenciacioService.form.value.fitxerSequencia._files[0],this.sequenciacioService.form.value.fitxerSequencia._files[0].name);

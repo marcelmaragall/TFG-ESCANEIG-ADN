@@ -1,39 +1,73 @@
 <div class="row">
-  <div id="sequencia_col" class="col-md-3">
+  <div id="sequencia_col" class="col-2">
     <div class="text-center">
       <h3>SEQÜÈNCIA</h3>
     </div>
     <mat-selection-list #seqs [multiple]="false" class="scan-container" (selectionChange)="onSelectionSeq($event)">
       <mat-list-option *ngFor="let seq of data.sequenciacions" [value]="seq.id">
         {{seq.nom}}
-    </mat-list-option>
+      </mat-list-option>
     </mat-selection-list>
-    <p>Seleccsao: {{seqs.selectedOptions.selected[0]?.value}}</p>
   </div>
-  <div id="patologies_col" class="col-md-3">
+
+  <div id="patologies_col" class="col-3">
     <div class="text-center">
       <h3>PATOLOGIES</h3>
     </div>
     <mat-selection-list #pats [multiple]="true" class="scan-container" (selectionChange)="onSelectionPat($event)">
-      <mat-list-option *ngFor="let d of diagnosticsList" [value]="d.patologia_id">
+      <mat-list-option *ngFor="let d of diagnosticsList" [value]="{id: d.patologia_id, nom: d.nomPatologia}">
         {{d.nomPatologia}}
       </mat-list-option>
     </mat-selection-list>
   </div>
-  <div id="gens_col" class="col-md-3">
+
+  <div id="gens_col" class="col-2">
     <div class="text-center">
       <h3>GENS</h3>
-      <mat-selection-list #gens [multiple]="true" class="scan-container" (selectionChange)="onSelectionGen($event)">
-        <mat-list-option *ngFor="let g of gensList" [value]="g.id">
+      <mat-selection-list #gens [multiple]="true" [(ngModel)]="gensSelectedOptions" [compareWith]="compareFunction" class="scan-container" (selectionChange)="onSelectionGen($event)">
+        <mat-list-option *ngFor="let g of gensList" [value]="{id: g.gen_id, simbol: g.simbol}">
           {{g.simbol}}
         </mat-list-option>
       </mat-selection-list>
 
     </div>
   </div>
-  <div id="sequencia_col" class="col-md-3">
-    <div class="text-center">
-      <h3>LLISTAT FINAL</h3>
+
+  <div id="sequencia_col" class="col-5">
+    <div cdkDropListGroup class="text-center scan-container">
+      <div >
+        <h3>LLISTAT FINAL</h3>
+      </div>
+      <p>Gens associats a malalties</p>
+      <div *ngFor="let p of gensPatologiesFinals">
+        <div class="example-container">
+          <p>{{p.nom}}</p>
+          <div
+            cdkDropList
+            [cdkDropListData]="p.gens"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of p.gens" cdkDrag>
+              <div>{{item.simbol}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="gens_independents" class="example-container">
+        <p>gens independents</p>
+        <div
+          cdkDropList
+          [cdkDropListData]="gensFinals"
+          class="example-list"
+          cdkDropListSortingDisabled
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of gensFinals" cdkDrag>
+            <div>{{item.simbol}}</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

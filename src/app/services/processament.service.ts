@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class ProcessamentService {
 
-  API_URI = 'http://192.168.1.121:3000/api';
+  API_URI = 'http://192.168.1.119:3000/api';
 
   constructor(private http: HttpClient) { }
 

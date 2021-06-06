@@ -1,5 +1,5 @@
-.tableFixHead          { overflow: auto; height: 250px; }
-.tableFixHead thead th { position: sticky; top: 0; z-index: 1; }
+.tableFixHead          { overflow: auto; height: 250px; background-color: lightsteelblue}
+.tableFixHead thead th { position: sticky; top: 0; z-index: 1; background-color: mediumblue }
 
 /* Just common table stuff. Really. */
 table  { border-collapse: collapse; width: 100%; }

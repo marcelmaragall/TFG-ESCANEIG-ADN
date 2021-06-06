@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col text-center">
+    <h3>ENTRA LES DADES DEL PACIENT</h3>
+  </div>
+</div>
+<div class="row">
+
+<div class="col">
+
+    <div class="pacient-form-container">
+      <form [formGroup]="pacientService.pacientForm">
+        <mat-grid-list cols="3" rowHeight="500px">
+          <mat-grid-tile>
+            <div class="controles-container">
+            <mat-form-field>
+              <input matInput placeholder="Nom" formControlName="nom" autofocus>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="text" matInput placeholder="Cognoms" formControlName="cognoms">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="text" matInput  name="dni" placeholder="DNI" formControlName="dni">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="text" matInput name="ce"  placeholder="Correu electrònic"  formControlName="ce">
+            </mat-form-field>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="controles-container">
+              <mat-form-field>
+                  <input type="text" matInput name="telefon"  placeholder="Telèfon"formControlName="telefon">
+              </mat-form-field>
+
+              <mat-form-field>
+                <input type="text" matInput name="pais"  placeholder="País" formControlName="pais">
+              </mat-form-field>
+
+              <mat-form-field>
+                <input type="text" matInput name="ciutat"  placeholder="Ciutat"  formControlName="ciutat">
+              </mat-form-field>
+
+              <mat-form-field>
+                <input type="text" matInput name="address" placeholder="Adreça" formControlName="address">
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="controles-container">
+            <button (click)="data.edit ? updatePacient() :  saveNewPacient()" [disabled]="!pacientService.pacientForm.valid" class="btn btn-success btn-block">
+              SAVE
+            </button>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </div>
+
+
+</div>
+
+</div>

@@ -19,3 +19,14 @@ snack-bar-container.notification simple-snack-bar{
   font-size: 18px !important;
   font-weight: bold;
 }
+
+
+
+/*molt extrany: aixo permet que en un monitor de 1920x1080 funcioni be el drag&drop. Altrament nomes funciona en monitors de 2k o mes resolucio*/
+html.cdk-global-scrollblock {
+  position: initial !important;
+}
+
+html.cdk-global-scrollblock body {
+  position: fixed;
+}
