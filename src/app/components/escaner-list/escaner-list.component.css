@@ -3,3 +3,12 @@
   height: 250px;
   overflow: auto;
 }
+
+/* mat-table */
+mat-cell, mat-header-cell{
+  justify-content: center;
+}
+
+mat-row:hover {
+  background-color: goldenrod;
+}

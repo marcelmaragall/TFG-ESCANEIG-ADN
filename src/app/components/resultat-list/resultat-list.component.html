@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col mt-4 text-center">
+    <h3>LLISTA DE RESULTATS</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource]="resultatService.resultatsEscaner"  matSort>
+        <ng-container matColumnDef="codi_resultat">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>Codi</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.codi_resultat}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="gen_simbol">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>Gen</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.gen_simbol}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="nom_patologia">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>Nom patologia</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.nom_patologia}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="snp">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>Número SNPs</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div *ngIf="element.snp === 0">
+            Perfect match
+            </div>
+            <div *ngIf="element.snp === -1">
+              No match
+            </div>
+            <div *ngIf="element.snp !== 0 && element.snp !== -1">
+            {{element.snp}}
+            </div>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let row;">
+            <button mat-icon-button (click)="openEditDialog(row)"><mat-icon>launch</mat-icon></button>
+            <button mat-icon-button (click)="descarregaResultat(row)" color="primary"><mat-icon>file_download</mat-icon></button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+    </div>
+
+  </div>
+
+</div>

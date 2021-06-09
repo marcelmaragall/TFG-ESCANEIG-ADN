@@ -13,8 +13,12 @@ export class EscanerService {
 
   API_URI = 'http://localhost:3000/api/scan';
 
-  getScan() {
-    return this.http.get(`${this.API_URI}`)
+  getScan(id: number) {
+    return this.http.get(`${this.API_URI}/${id}`)
+  }
+
+  getResultatsEscaner(id: number){
+    return this.http.get(`${this.API_URI}/resultat/${id}`)
   }
 
   getScansByPacient(id: number) {
@@ -29,8 +33,12 @@ export class EscanerService {
     return this.http.delete(`${this.API_URI}/${id}`)
   }
 
-  saveScans(escaneig: Escaner) {
+  saveScan(escaneig: any) {
     return this.http.post(`${this.API_URI}`, escaneig)
+  }
+
+  update(id, params) {
+    return this.http.put(`${this.API_URI}/${id}`, params)
   }
 
 }

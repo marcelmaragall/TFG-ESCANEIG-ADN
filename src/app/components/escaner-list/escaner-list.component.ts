@@ -15,8 +15,8 @@ export class EscanerListComponent implements OnInit, OnChanges {
   constructor(private escanerService: EscanerService) { }
 
   @Input() pacient_id: number;
-  listData: MatTableDataSource<any>;
-  displayedColumns: string[] = ['codi_scan', 'data', 'seq', 'actions'];
+  escanerData: MatTableDataSource<any>;
+  displayedColumns: string[] = ['codi_scan', 'data', 'seq', 'estat', 'actions'];
   @ViewChild(MatSort) sort: MatSort;
 
   getScansByPacient(id:number): Observable<Escaner[]> {
@@ -26,8 +26,8 @@ export class EscanerListComponent implements OnInit, OnChanges {
       llista => {
         console.log(llista);
         //this.escanerService.scans = s;
-        this.listData = new MatTableDataSource(llista);
-        this.listData.sort = this.sort;
+        this.escanerData = new MatTableDataSource(llista);
+        this.escanerData.sort = this.sort;
 
       },
       err => console.error(err)

@@ -27,6 +27,7 @@ import {GenListComponent} from "./components/gen-list/gen-list.component";
 import {PatologiaDetallComponent} from "./components/patologia-detall/patologia-detall.component";
 import {SequenciacioFormComponent} from "./components/sequencia-form/sequencia-form.component";
 import {FileUploadComponent} from "./components/file-upload/file-upload.component";
+import {EscanerDetallComponent} from "./components/escaner-detall/escaner-detall.component";
 
 
 
@@ -81,6 +82,10 @@ const routes: Routes = [
   {
     path: 'patologies/:id',
     component: PatologiaDetallComponent
+  },
+  {
+    path: 'escaners/:id',
+    component: EscanerDetallComponent
   },
   {
     path: '**',

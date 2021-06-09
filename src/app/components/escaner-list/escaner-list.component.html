@@ -1,16 +1,20 @@
 <div class="mat-elevation-z8 escaner-container">
-  <mat-table [dataSource]="listData" matSort>
+  <mat-table [dataSource]="escanerData" matSort>
     <ng-container matColumnDef="codi_scan">
       <mat-header-cell *matHeaderCellDef  mat-sort-header>Codi escàner</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.codi_scan}}</mat-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="['/escaners/', element.id]">{{element.codi_scan}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="data">
       <mat-header-cell *matHeaderCellDef  mat-sort-header>Data</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.data}}</mat-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="['/escaners/', element.id]">{{element.data}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="seq">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Seqüència</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.seq}}</mat-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="['/escaners/', element.id]">{{element.seq}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="estat">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Estat</mat-header-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="['/escaners/', element.id]">{{element.estat}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">

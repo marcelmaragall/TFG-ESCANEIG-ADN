@@ -14,6 +14,9 @@ import {GenService} from "../../services/gen.service";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {GenPatologiaUsuariService} from "../../services/gen-patologia-usuari.service";
 import {SelectionListHarnessFilters} from "@angular/material/list/testing";
+import {NotificacioService} from "../../services/notificacio.service";
+import DidNavigateInPageEvent = Electron.DidNavigateInPageEvent;
+import {ProcessamentService} from "../../services/processament.service";
 
 
 @Component({
@@ -25,11 +28,14 @@ export class NouEscanerComponent implements OnInit {
 
   constructor(
     private escanerService: EscanerService,
-    @Inject(MAT_DIALOG_DATA) public data: {sequenciacions: Sequenciacio[], pacient_id: number},
+    @Inject(MAT_DIALOG_DATA) public data: {sequenciacions: Sequenciacio[], pacient: any},
     private patologiaService: PatologiaService,
     private accountService: AccountService,
     private diagnosticService: DiagnosticPacientService,
-    private uPatGenService: GenPatologiaUsuariService
+    private uPatGenService: GenPatologiaUsuariService,
+    private notificacioService: NotificacioService,
+    private genService: GenService,
+    private processamentService: ProcessamentService
   ) { }
 
 
@@ -100,7 +106,7 @@ export class NouEscanerComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuari_id = this.accountService.userValue.id;
-    this.getDiagnostics(this.data.pacient_id);
+    this.getDiagnostics(this.data.pacient.id);
     this.getGens(this.usuari_id);
   }
 
@@ -295,6 +301,135 @@ export class NouEscanerComponent implements OnInit {
     this.desllistaGens(gens_ids)
   }
 
+
+  async escaneja(){
+
+    if (!this.sequenciacio_id){
+      return this.notificacioService.error("Has de seleccionar una seqüència")
+    }
+    let trobat = false;
+    for (const pat of this.gensPatologiesFinals){
+      if (pat.gens.length > 0){
+        trobat = true;
+      }
+    }
+    if (this.gensFinals.length == 0 && !trobat){
+      return this.notificacioService.error("Cap gen seleccionat")
+    }
+
+    var body = {};
+    let seqIndex = this.data.sequenciacions.map(function(e) { return e['id']; }).indexOf(this.sequenciacio_id);
+    let seqNom = this.data.sequenciacions[seqIndex].nom;
+    body['dadesSequencia'] = {
+      nom: seqNom,
+      cromossoma: this.data.sequenciacions[seqIndex].cromossoma
+    };
+    body['dadesUsuari'] = {
+      id: this.usuari_id,
+      nom: "Marcel",
+      cognoms: "Maragall"
+    };
+    body['dadesPacient'] = {
+      id: this.data.pacient.id,
+      nom: this.data.pacient.nom,
+      cognoms: this.data.pacient.cognoms,
+      DNI: this.data.pacient.dni,
+    };
+    body['dadesGens'] = {
+      patologies : [],
+      gens : []
+    };
+
+    var self = this;
+    function asyncProcess(gen) {
+      return new Promise((resolve, reject) => {
+        self.genService.getGenLocus(gen['gen_id']).subscribe(
+          res => {
+            console.log("aquest es el locus");
+            resolve(res['locus']);
+          },
+          err => {
+            console.log(err);
+          }
+        )
+      })
+    }
+
+    for (const gen of this.gensFinals){
+      let locus = await asyncProcess(gen);
+      if (locus !== '') {
+        body['dadesGens']['gens'].push({
+          id: gen['gen_id'],
+          simbol: gen['simbol'],
+          locus: locus['locus']
+        });
+      }
+    }
+
+    for (const pat of this.gensPatologiesFinals){
+      if (pat['gens'].length > 0) {
+        body['dadesGens']['patologies'].push({
+          nom: pat['nom'],
+          id: pat['id'],
+          gens: []
+        });
+        let index = body['dadesGens']['patologies'].length - 1;
+        for (const gen of pat['gens']) {
+          let locus = await asyncProcess(gen);
+          if (locus !== '') {
+            body['dadesGens']['patologies'][index]['gens'].push({
+              id: gen['gen_id'],
+              simbol: gen['simbol'],
+              locus: locus['locus']
+            })
+          }
+        }
+      }
+    }
+
+    let cosScan = {
+      seq: this.sequenciacio_id,
+      pacient_id: this.data.pacient.id,
+      user_id: this.usuari_id,
+      estat: 'escanejant'
+    };
+
+    if (body['dadesGens']['gens'].length == 0 && body['dadesGens']['patologies'].length == 0) {
+      return this.notificacioService.error("No es poden escanejar els gens seleccionats. Falta el locus.")
+    }
+    this.escanerService.saveScan(cosScan).subscribe(
+      res => {
+        if (res['id']) {
+          let scanId = res['id'];
+          let codiScan = "scan_"+this.data.pacient.dni+"_"+seqNom+"_"+res['id'];
+          this.escanerService.update(res['id'],{codi_scan: codiScan}).subscribe(
+            res =>{
+              body['dadesEscaner'] = {
+                scanId: scanId,
+                codiScan: codiScan
+              };
+              console.log("body")
+              console.log(body)
+              this.processamentService.scanSeq(body).subscribe(
+                res => {
+                  console.log(res);
+                },
+                err => {
+                  console.log(err)
+                }
+              )
+            }
+          );
+        }
+      },
+      err => {
+
+      }
+    );
+
+
+
+  }
 
 
 

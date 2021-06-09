@@ -152,7 +152,7 @@ export class PacientDetallComponent implements OnInit {
     }
     dialogConfig.data = {
       sequenciacions: indexedSeqs,
-      pacient_id: this.pacient.id
+      pacient: this.pacient
     };
     const dialogRef = this.dialog.open(NouEscanerComponent, dialogConfig);
 

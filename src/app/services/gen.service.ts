@@ -23,6 +23,10 @@ export class GenService {
     return this.http.get(`${this.API_URI}/MIM/${mim}`)
   }
 
+  getGenLocus(id: number) {
+    return this.http.get(`${this.API_URI}/locus/${id}`)
+  }
+
   getGens() {
     return this.http.get(`${this.API_URI}`)
   }

@@ -1,0 +1,64 @@
+<div *ngIf = "allIsLoaded">
+  <br>
+  <div class="row">
+
+    <div class="col-md-6 border border-primary rounded h-100" style="overflow: auto;">
+      <h1>{{escaner.codi_scan}}</h1>
+      <br>
+      <h4 class="text-center mb-4">Dades seqüenciació</h4>
+      <dl class="row">
+        <br>
+        <dt class="col-sm-4">Seqüència</dt>
+        <dd class="col-sm-8">{{seq.nom}}</dd>
+
+        <dt class="col-sm-4">Cromossoma</dt>
+        <dd class="col-sm-8">{{seq.cromossoma}}</dd>
+
+        <dt class="col-sm-4">Laboratori</dt>
+        <dd class="col-sm-8">{{seq.laboratori}}</dd>
+
+      </dl>
+      <br>
+      <h4 class="text-center mb-4">Dades pacient</h4>
+      <dl class="row">
+        <br>
+        <dt class="col-sm-4">Nom</dt>
+        <dd class="col-sm-8">{{pac.nom}}</dd>
+
+        <dt class="col-sm-4">Cognoms</dt>
+        <dd class="col-sm-8">{{pac.cognoms}}</dd>
+
+        <dt class="col-sm-4">DNI</dt>
+        <dd class="col-sm-8">{{pac.dni}}</dd>
+
+        <dt class="col-sm-4">Correu electrònic</dt>
+        <dd class="col-sm-8">{{pac.ce}}</dd>
+
+      </dl>
+    </div>
+
+
+    <div class="col-md-6">
+        <p>Comentaris:</p>
+        <pre class="comentaris">{{escaner.comentaris}}</pre>
+    </div>
+
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col">
+      <div *ngIf = "escaner.estat === 'completat'">
+        <app-resultat-list [escaner_id]="escaner_id"></app-resultat-list>
+      </div>
+      <div *ngIf = "escaner.estat !== 'completat'">
+        <h3 class="text-center">RESULTATS NO DISPONIBLES. ESCANEIG EN CURS</h3>
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+</div>

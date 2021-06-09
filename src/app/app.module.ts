@@ -54,6 +54,8 @@ import { GenPatologiaUsuariComponent } from './components/gen-patologia-usuari/g
 import { GenListDialogComponent } from './components/gen-list-dialog/gen-list-dialog.component';
 import { BuscadorGensComponent } from './components/buscador-gens/buscador-gens.component';
 import { PacientFormDialogComponent } from './components/pacient-form-dialog/pacient-form-dialog.component';
+import { EscanerDetallComponent } from './components/escaner-detall/escaner-detall.component';
+import {EditResultatComponent, ResultatListComponent} from './components/resultat-list/resultat-list.component';
 
 
 // AoT requires an exported function for factories
@@ -83,9 +85,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     GenPatologiaUsuariComponent,
     GenListDialogComponent,
     EditPatologiaComponent,
+    EditResultatComponent,
     BuscadorGensComponent,
     EditGenComponent,
-    PacientFormDialogComponent
+    PacientFormDialogComponent,
+    EscanerDetallComponent,
+    ResultatListComponent
     //FileUploadComponent,
     // SequenciaListComponent,
     // SequenciaFormComponent,
@@ -114,6 +119,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents:[SequenciacioFormComponent, NouEscanerComponent, EditPatologiaComponent, EditGenComponent, PacientFormDialogComponent]
+  entryComponents:[SequenciacioFormComponent, NouEscanerComponent, EditPatologiaComponent, EditGenComponent, PacientFormDialogComponent, EditResultatComponent]
 })
 export class AppModule {}

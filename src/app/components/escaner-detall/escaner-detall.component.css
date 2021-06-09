@@ -1,0 +1,10 @@
+h1 { color: mediumblue; font-family: 'Helvetica Neue', sans-serif; font-size: 36px; font-weight: 100; line-height: 50px; letter-spacing: 4px; padding: 0 0 10px; border-bottom: double #c9d0d4; }
+
+.comentaris {
+  height: 440px;
+  background: aqua;
+}
+
+pre {
+  white-space: pre-wrap;
+}
